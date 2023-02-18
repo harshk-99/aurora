@@ -1,0 +1,96 @@
+# ignore all xst
+./synth/xst/**
+
+# ignore all NGCs except for our dual_port_memory
+./synth/async_fifo_256x72_to_36.ngc
+./synth/async_fifo_512x36_progfull_500.ngc
+./synth/async_fifo_512x36_to_72_progfull_500.ngc
+./synth/bram_cam_32x32.ngc
+./synth/bram_cam_64x32.ngc
+./synth/bram_cam_unencoded_32x32.ngc
+./synth/cam_16x32.ngc
+./synth/cdq_rx_fifo_512x36.ngc
+./synth/cdq_rx_fifo_512x36_to_72.ngc
+./synth/cdq_tx_fifo_256x72_to_36.ngc
+./synth/cdq_tx_fifo_512x36.ngc
+./synth/hdr_fifo.ngc
+./synth/net2pci_16x32.ngc
+./synth/pci2net_16x60.ngc
+./synth/rxfifo_8kx9_to_36.ngc
+./synth/rxfifo_8kx9_to_72.ngc
+./synth/rxlengthfifo_128x13.ngc
+./synth/srl_cam_32x32.ngc
+./synth/srl_cam_64x32.ngc
+./synth/srl_cam_unencoded_32x32.ngc
+./synth/syncfifo_512x32.ngc
+./synth/syncfifo_512x36.ngc
+./synth/syncfifo_512x36_fallthrough.ngc
+./synth/syncfifo_512x72.ngc
+./synth/txfifo_1024x36_to_9.ngc
+./synth/txfifo_512x72_to_9.ngc
+
+# ignore .lst
+./synth/netlist.lst
+
+# ignore all .bld files
+./synth/*.bld
+
+# ignore all .lso files
+./synth/*.lso
+
+# ignore all .map files
+./synth/*.map
+
+# ignore all .mrp files
+./synth/*.mrp
+
+# ignore all .ngc files
+./synth/*.ngc
+
+# ignore all .ngm files
+./synth/*.ngm
+
+# ignore all .pcf files
+./synth/*.pcf
+
+# ignore all .prj files
+./synth/*.prj
+
+# ignore all .bgn files
+./synth/*.bgn
+
+# ignore all .drc files
+./synth/*.drc
+
+# ignore all .ncd files
+./synth/*.ncd
+
+# ignore all .pad files
+./synth/*.pad
+
+# ignore all .par files
+./synth/*.par
+
+# ignore all .ptwx files
+./synth/*.ptwx
+
+# ignore all .twr files
+./synth/*.twr
+
+# ignore all .unroutes files
+./synth/*.unroutes
+
+# ignore all .xpi files
+./synth/*.xpi
+
+# ignore all .csv files
+./synth/*.csv
+
+# ignore all .txt files
+./synth/*.txt
+
+# ignore all .xml files
+./synth/*.xml
+
+# ignore nf2_top_par.xrpt
+./synth/nf2_top_par.xrpt
