@@ -29,6 +29,12 @@
 ./synth/txfifo_1024x36_to_9.ngc
 ./synth/txfifo_512x72_to_9.ngc
 
+#ignore all .vvp files
+*.vvp
+
+#ignore all .vcd files
+*.vcd
+
 # ignore .lst
 ./synth/netlist.lst
 
