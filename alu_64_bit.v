@@ -25,10 +25,10 @@
 module alu_64_bit
     #( parameter DATA_WIDTH=64)
     (
-        input   [DATA_WIDTH-1:0]    in_rs1,
-        input   [DATA_WIDTH-1:0]    in_rs2, 
-        input   [2:0]   in_funct3,
-        input   [6:0]               in_funct7,
+        input   [DATA_WIDTH-1:0]    		in_rs1,
+        input   [DATA_WIDTH-1:0]    		in_rs2, 
+        input   [2:0]   								in_funct3,
+        input   [6:0]               		in_funct7,
         output  reg [DATA_WIDTH-1:0]    out_rd
     );
 		//reg [DATA_WIDTH-1:0] out_rd;
