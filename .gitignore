@@ -1,9 +1,3 @@
-#ignore all .vcd files
-*.vcd
-
-#ignore all .vvp files
-*.vvp
-
 # ignore all xst
 ./synth/xst/**
 
