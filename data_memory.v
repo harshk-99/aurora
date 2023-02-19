@@ -1,10 +1,11 @@
 module data_memory (
   input          clk,
+  input          rst,
   input  [7:0]  mem_address,
   input  [63:0]  data_in,
   input          write_en,
   input          read_en,
-  output [63:0]  data_out
+  output reg [63:0]  data_out
 );
 
 integer i;
@@ -54,9 +55,10 @@ initial
 
 
 always @(posedge clk) begin
-  if (write_en)
+  if (write_en && !rst)
     ram[mem_address] <= data_in;
+  else if (read_en && !rst)
+    data_out <= ram[mem_address];
 end
 
-assign data_out = (read_en == 1'b1) ? ram[mem_address] : 32'd0;
 endmodule
