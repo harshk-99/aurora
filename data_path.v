@@ -6,6 +6,7 @@
 `include "IDEX.v"
 `include "EXMEM.v"
 `include "MEMWB.v"
+`include "hazard_detect.v"
 
 
 module data_path (
@@ -34,8 +35,16 @@ module data_path (
     wire [6:0]          func7_intm_w;
     wire [63:0]         alu_out_w;
     wire [63:0]         mem_read_data_w;
+    wire                hazard_w;
 
     reg  [7:0]          pc_current_r;
+
+    wire                hz_reg_write_w;
+    wire                hz_mem_write_w;
+    wire                hz_mem_read_w;
+    wire                hz_mem_to_reg_w;
+    wire                hz_load_w;
+    wire                hz_store_w;
 
 
     wire                ex_reg_write_w;
@@ -69,13 +78,25 @@ module data_path (
     always @(posedge clk_i) begin
         if (rst_i == 1'b1)
             pc_current_r <= 8'd0;
-        else
+        else if (hazard_w != 1'b1)
             pc_current_r <= pc1_w;
+        else
+            pc_current_r <= pc_current_r;
     end
 
     assign pc1_w = pc_current_r + 8'd1;
 
-    inst_memory im0 (clk_i, rst_i, pc_current_r, instr_w);
+    inst_memory im0 (clk_i, rst_i, pc_current_r, hazard_w, instr_w);
+
+    hazard_detect hdu0 (
+        .id_rs1_i        (reg_read_addr1_w),
+        .id_rs2_i        (reg_read_addr2_w),
+        .ex_rd_i         (ex_reg_write_addr_w),
+        .mem_rd_i        (mem_reg_write_addr_w),
+        .ex_reg_write_i  (ex_reg_write_w),
+        .mem_reg_write_i (mem_reg_write_w),
+        .hazard_o        (hazard_w)
+    );
 
     control_unit cu0 (
         .opcode_i       (instr_w[6:0]),
@@ -91,6 +112,8 @@ module data_path (
     assign reg_read_addr1_w = instr_w[19:15];
     assign reg_read_addr2_w = instr_w[24:20];       // ! Source register
     assign reg_write_addr_w = instr_w[11:7];
+
+    assign {hz_reg_write_w, hz_mem_write_w, hz_mem_read_w, hz_mem_to_reg_w, hz_load_w, hz_store_w} = (hazard_w == 1'b1) ? 6'b0 : {reg_write_w, mem_write_w, mem_read_w, mem_to_reg_w, load_w, store_w};
 
     register_file rf0 (
         .clk_i          (clk_i),
@@ -109,12 +132,12 @@ module data_path (
     assign func7_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[31:25] : 7'b0000000;
 
     IDEX idex0 (
-        .WRegEn_in          (reg_write_w), 
-        .WMemEn_in          (mem_write_w), 
-        .RMemEn_in          (mem_read_w), 
-        .mem_to_reg_in      (mem_to_reg_w),
-        .load_in            (load_w),
-        .store_in           (store_w), 
+        .WRegEn_in          (hz_reg_write_w), 
+        .WMemEn_in          (hz_mem_write_w), 
+        .RMemEn_in          (hz_mem_read_w), 
+        .mem_to_reg_in      (hz_mem_to_reg_w),
+        .load_in            (hz_load_w),
+        .store_in           (hz_store_w), 
         .R1out_in           (reg_read_data1_w), 
         .R2out_in           (reg_read_data2_w), 
         .WReg1_in           (reg_write_addr_w),
