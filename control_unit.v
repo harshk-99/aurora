@@ -15,7 +15,15 @@ module control_unit (
       store_i = 1'b0;
     end else begin
       case (opcode_i)
-    7'b0110011: begin            // * R - Type
+    7'b0110011: begin                // * R - Type
+          mem_read_i = 1'b0;
+          mem_to_reg_i = 1'b0;
+          mem_write_i = 1'b0;
+          reg_write_i = 1'b1;
+          load_i = 1'b0;
+          store_i = 1'b0;
+          end
+    7'b0010011: begin                // * I - Type (Arithmetic)
           mem_read_i = 1'b0;
           mem_to_reg_i = 1'b0;
           mem_write_i = 1'b0;
