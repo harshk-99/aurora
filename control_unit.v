@@ -2,7 +2,7 @@ module control_unit (
   input      [6:0] opcode_i,
   input            reset_i,
   
-  output reg       mem_read_i, mem_to_reg_i, mem_write_i, reg_write_i, load_i, store_i
+  output reg       mem_read_i, mem_to_reg_i, mem_write_i, reg_write_i, load_i, store_i, immd_i
 );
 
   always @(*) begin
@@ -11,6 +11,7 @@ module control_unit (
       mem_to_reg_i = 1'b0;
       mem_write_i = 1'b0;
       reg_write_i = 1'b0;
+      immd_i = 1'b0;
       load_i = 1'b0;
       store_i = 1'b0;
     end else begin
@@ -20,6 +21,7 @@ module control_unit (
           mem_to_reg_i = 1'b0;
           mem_write_i = 1'b0;
           reg_write_i = 1'b1;
+          immd_i = 1'b0;
           load_i = 1'b0;
           store_i = 1'b0;
           end
@@ -28,6 +30,7 @@ module control_unit (
           mem_to_reg_i = 1'b0;
           mem_write_i = 1'b0;
           reg_write_i = 1'b1;
+          immd_i = 1'b1;
           load_i = 1'b0;
           store_i = 1'b0;
           end
@@ -36,6 +39,7 @@ module control_unit (
           mem_to_reg_i = 1'b1;
           mem_write_i = 1'b0;
           reg_write_i = 1'b1;
+          immd_i = 1'b1;
           load_i = 1'b1;
           store_i = 1'b0;
           end
@@ -44,6 +48,7 @@ module control_unit (
           mem_to_reg_i = 1'bx;
           mem_write_i = 1'b1;
           reg_write_i = 1'b0;
+          immd_i = 1'b0;
           load_i = 1'b0;
           store_i = 1'b1;
           end
@@ -52,6 +57,7 @@ module control_unit (
           mem_to_reg_i = 1'b0;
           mem_write_i = 1'b0;
           reg_write_i = 1'b0;
+          immd_i = 1'b0;
           load_i = 1'b0;
           store_i = 1'b0;
             end

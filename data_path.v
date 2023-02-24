@@ -21,6 +21,7 @@ module data_path (
     wire                mem_to_reg_w;
     wire                mem_write_w;
     wire                reg_write_w;
+    wire                immd_w;
     wire                load_w;
     wire                store_w;
     wire [4:0]          reg_read_addr1_w;
@@ -51,6 +52,7 @@ module data_path (
     wire                ex_mem_write_w;
     wire                ex_mem_read_w;
     wire                ex_mem_to_reg_w;
+    wire                ex_immd_w;
     wire                ex_load_w;
     wire                ex_store_w;
     wire [63:0]         ex_r1_out_w;
@@ -105,6 +107,7 @@ module data_path (
         .mem_to_reg_i   (mem_to_reg_w),
         .mem_write_i    (mem_write_w),
         .reg_write_i    (reg_write_w),
+        .immd_i         (immd_w),
         .load_i         (load_w),
         .store_i        (store_w)
     );
@@ -136,6 +139,7 @@ module data_path (
         .WMemEn_in          (hz_mem_write_w), 
         .RMemEn_in          (hz_mem_read_w), 
         .mem_to_reg_in      (hz_mem_to_reg_w),
+        .imm_in             (immd_w),
         .load_in            (hz_load_w),
         .store_in           (hz_store_w), 
         .R1out_in           (reg_read_data1_w), 
@@ -150,6 +154,7 @@ module data_path (
         .WMemEn_out         (ex_mem_write_w), 
         .RMemEn_out         (ex_mem_read_w), 
         .mem_to_reg_out     (ex_mem_to_reg_w), 
+        .imm_out            (ex_immd_w),
         .load_out           (ex_load_w),
         .store_out          (ex_store_w), 
         .R1out_out          (ex_r1_out_w), 
@@ -160,7 +165,7 @@ module data_path (
         .func7_out          (ex_func7_w)
     );
 
-    assign data2_w = (ex_load_w == 1'b0 && ex_store_w == 1'b0) ? ex_r2_out_w : ex_sign_ext_w;
+    assign data2_w = (ex_load_w == 1'b0 && ex_store_w == 1'b0 && ex_immd_w == 1'b0) ? ex_r2_out_w : ex_sign_ext_w;
 
     alu_64_bit alu0 (
         .in_rs1     (ex_r1_out_w),
