@@ -14,6 +14,8 @@ module IDEX (
     input       [6:0]     func7_in, 
     input                 CLK, 
     input                 RST,
+    input                   jal_in,
+    input                   hz_jalr_in,
 
     output reg            WRegEn_out, 
     output reg            WMemEn_out, 
@@ -27,7 +29,9 @@ module IDEX (
     output reg  [63:0]    sign_ext_out, 
     output reg  [4:0]     WReg1_out,
     output reg  [2:0]     func3_out,
-    output reg  [6:0]     func7_out
+    output reg  [6:0]     func7_out,
+    output reg            jal_out,
+    output reg            hz_jalr_out
 );
     
 always @(posedge CLK ) begin
@@ -46,6 +50,8 @@ always @(posedge CLK ) begin
         WReg1_out        <= 5'd0;
         func3_out        <= 3'd0;
         func7_out        <= 7'd0;
+        hz_jalr_out<=1'b0;
+        jal_out<=1'b0;
     end
     else
         WRegEn_out       <= WRegEn_in;
@@ -61,6 +67,9 @@ always @(posedge CLK ) begin
         WReg1_out        <= WReg1_in;
         func3_out        <= func3_in;
         func7_out        <= func7_in;
+        hz_jalr_out<=hz_jalr_in;
+        jal_out<=jal_in;
+
 end
 
 endmodule
