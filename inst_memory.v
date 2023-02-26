@@ -126,7 +126,7 @@ initial
                   // rom[111]  = 32'd0;
                   // rom[112]  = 32'd0;
                   // rom[113]  = 32'd0;                  
-                for (i = 19; i <= 255; i++) begin
+                for (i = 19; i <= 255; i=i+1) begin
                   rom[i] = 32'd0;
                 end
                 

@@ -31,7 +31,7 @@ initial begin
   #1200;
   // $monitor("Took 62 clocks to complete. Execution time: 1.24us");
   $display("Contents of Register file:");
-  for(i = 0; i <= 7; i++) begin
+  for(i = 0; i <= 7; i=i+1) begin
     $write("reg%0d = 0x%0h\t", i, uut.rf0.reg_file[i]);
     $write("reg%0d = 0x%0h\t", i+8, uut.rf0.reg_file[i+8]);
     $write("reg%0d = 0x%0h\t", i+16, uut.rf0.reg_file[i+16]);
