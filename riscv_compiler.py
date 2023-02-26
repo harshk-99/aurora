@@ -200,18 +200,20 @@ def assemble_riscv(instruction):
         instr = parsePType(parts)
     else:
         raise Exception("Illegal Instruction")
+
     return instr
 
 
 def print_all():
     print(block_names)
 
-
 inst_start_mem = 0
 inst_count = 0
+current_pc = inst_start_mem
+
 block_names = {}
 instructions = []
-filename = "test.s"
+filename = "bubblesort.s"
 with open(filename, "r") as file:
     for line in file:
 
@@ -221,7 +223,7 @@ with open(filename, "r") as file:
             if stripped_line[-1] != ":":
                 inst_count += 1
             elif (stripped_line[0] == "."):
-                print([stripped_line[:-1], inst_count+2])
+                #print([stripped_line[:-1], inst_count+2])
                 block_names[stripped_line[:-1]] = inst_count + \
                     inst_start_mem + 2
 program_counter = 0
@@ -232,16 +234,20 @@ with open(filename, "r") as file:
         stripped_line = line.strip()
         if (stripped_line != "" and stripped_line[0] != "#"):
             if (stripped_line[-1] != ":"):
-                program_counter += 1
-
-                for key, value in block_names.items():
-                    stripped_line = stripped_line.replace(key, str(value))
-
                 # Print assmebly code line
                 print((stripped_line))
+                for key, value in block_names.items():
+                    #print("Jumping from ", current_pc , " to ", key , " ", value)
+                    if key in stripped_line:
+                        print("Jumping from ", program_counter , " to ", key , " ", value)
+                    stripped_line = stripped_line.replace(key, str(value-program_counter))
+                    
+
 
                 # generate binary of that assembly
                 instructions.append(assemble_riscv(stripped_line))
+                #print(program_counter, " " , instructions[len(instructions)-1])
+                program_counter += 1
 
                 # for formatting
                 # bin_str = format(num, '032b')
