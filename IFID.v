@@ -4,6 +4,7 @@ module IFID (
     input                 CLK, 
     input                 RST,
     input                 wb_ff_in,
+    input                 hazard,
 
     
     output reg  [7:0]     PC_out,
@@ -15,6 +16,10 @@ always @(posedge CLK ) begin
     begin
         PC_out          <= 8'b00000000;
         wb_ff_out       <= 1'b0;  
+    end
+    else if (hazard) begin
+        PC_out          <= PC_out;
+        wb_ff_out       <= wb_ff_out;
     end
     else
         PC_out          <= PC_in;

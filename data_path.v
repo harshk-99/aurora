@@ -7,6 +7,8 @@
 `include "EXMEM.v"
 `include "MEMWB.v"
 `include "hazard_detect.v"
+`include "IFID.v"
+`include "br_alu.v"
 
 
 module data_path (
@@ -115,6 +117,7 @@ module data_path (
         .RST                (rst_i),
         .PC_in              (pc_current_r),
         .PC_out             (id_pc_o),
+        .hazard             (hazard_w),
         .wb_ff_in           (wb_ff_w),
         .wb_ff_out          (id_wb_ff_w)
     );
@@ -147,6 +150,7 @@ module data_path (
     control_unit cu0 (
         .opcode_i       (instr_w[6:0]),
         .reset_i        (rst_i),
+        .wb_ff_i        (id_wb_ff_w),
         .mem_read_i     (mem_read_w),
         .mem_to_reg_i   (mem_to_reg_w),
         .mem_write_i    (mem_write_w),
@@ -177,7 +181,7 @@ module data_path (
         .read_data2_o   (reg_read_data2_w)
         );
 
-    assign sign_ext_w = (load_w == 1'b1) ? {{52{instr_w[31]}}, instr_w[31:20]} : {{52{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
+    assign sign_ext_w = (load_w == 1'b1 || immd_w == 1'b1) ? {{52{instr_w[31]}}, instr_w[31:20]} : {{52{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
     assign func3_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[14:12] : 3'b000;
     assign func7_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[31:25] : 7'b0000000;
 // control instructions mux logic for ID stage

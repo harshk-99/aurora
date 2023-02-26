@@ -22,8 +22,6 @@ module hazard_detect (
   output      hazard_o
 );
 assign hazard_o = (
-  (mem_read_i | mem_to_reg_i | mem_write_i | reg_write_i | load_i | store_i | immd_i | jal_i | jalr_i | branch_i)
-  && 
   (ex_reg_write_i && (((ex_rd_i == id_rs1_i) && (id_rs1_i!=5'b00000)) || ((ex_rd_i == id_rs2_i) && (id_rs2_i!=5'b00000))))
   ||
   (mem_reg_write_i && (((mem_rd_i == id_rs1_i) && (id_rs1_i!=5'b00000)) || ((mem_rd_i == id_rs2_i) && (id_rs2_i!=5'b00000))))
