@@ -1,114 +1,82 @@
-main:
-	#create stack
-	addi	a6 a6 -48
-	#save s0
-	sw	s0 44(a6)
-	#update s0
-	addi	s0 a6 48
+ld zero 0(zero)
+ld ra   1(zero)
+ld sp   2(zero)
+ld gp   3(zero)
+ld tp   4(zero)
 
-	#init arr[] to memory
-	li	a5 3
-	sw	a5 -48(s0)
-	li	a5 5
-	sw	a5 -44(s0)
-	li	a5 1
-	sw	a5 -40(s0)
-	li	a5 2
-	sw	a5 -36(s0)
-	li	a5 4
-	sw	a5 -32(s0)
+#init arr[] to memory
 
-	#start signal maybe
-	#init i to memory
-	#testing
-	add	a5 a4 a5
+li  s0 0
+li	a5 3
+sw	a5 0(s0)
+li	a5 5
+sw	a5 1(s0)
+li	a5 1
+sw	a5 2(s0)
+li	a5 2
+sw	a5 3(s0)
+li	a5 4
+sw	a5 4(s0)
 
-	sw	s0 0(s0)
-	j	.L2
-.L6:
-	#init j to memory
-	sw	zero -24(s0)
-	j	.L3
-.L5:
-	#load arr[ j ] to a4
-	lw	a5 -24(s0)
-	slli	a5 a5 2
-	addi	a4 s0 -16
-	add	a5 a4 a5
-	lw	a4 -32(a5)
+# t0 is i
+# t1 is j
+# t2 is 4
+# t3 is 4 - i
 
-	#load arr[j+1] a5
-	lw	a5 -24(s0)
-	addi	a5 a5 1
-	slli	a5 a5 2
-	addi	a3 s0 -16
-	add	a5 a3 a5
-	lw	a5 -32(a5)
-	
-	#if arr[j + 1] > arr[j] 
-	bge	a5 a4 .L4
+li  t0 0
+li  t1 0
+li  t2 4
 
-# arr[j+1] < arr[j]
+.L1:
+	# i < 4
+	blt t0 t2 .L2
+	j .L7
 
-	#load arr[j] a5
-	lw	a5 -24(s0)
-	slli	a5 a5 2
-	addi	a4 s0 -16
-	add	a5 a4 a5
-	lw	a5 -32(a5)
-
-	#store arr[j] to tmp
-	sw	a5 -28(s0)
-
-	#load arr[j+1] to a4
-	lw	a5 -24(s0)
-	addi	a5 a5 1
-	slli	a5 a5 2
-	addi	a4 s0 -16
-	add	a5 a4 a5
-	lw	a4 -32(a5)
-
-	#arr[j] = arr[j+1]
-	lw	a5 -24(s0)
-	slli	a5 a5 2
-	addi	a3 s0 -16
-	add	a5 a3 a5
-	sw	a4 -32(a5)
-
-	#store tmp to arr[j+1]
-	lw	a5 -24(s0)
-	addi	a5 a5 1
-	slli	a5 a5 2
-	addi	a4 s0 -16
-	add	a5 a4 a5
-	lw	a4 -28(s0)
-	sw	a4 -32(a5)
-.L4:
-	#j++
-	lw	a5 -24(s0)
-	addi	a5 a5 1
-	sw	a5 -24(s0)
-.L3:
-	#check (j - i) < 4
-	li	a4 4
-	lw	a5 -20(s0)
-	sub	a5 a4 a5
-	lw	a4 -24(s0)
-	blt	a4 a5 .L5
-
-	#i++
-	lw	a5 -20(s0)
-	addi	a5 a5 1
-	sw	a5 -20(s0)
 .L2:
-	#check i < 4
-	lw	a4 -20(s0)
-	li	a5 3
-	bge	a5 a4 .L6
+	# 4 - i
+	sub t3 t2 t0
+	# j < 4 - i
+	blt t1 t3 .L3
+	j .L6
 
-	#return
-	li	a5 0
-	mv	a0 a5
-	lw	s0 44(a6)
-	addi	a6 a6 48
-	jr	ra
+.L3:
+	# load at loc j
+	ld s2 0(t1)
+	# load at loc j + 1
+	ld s3 1(t1)
+	# [j + 1] < [j]
+	blt s3 s2 .L4
+	j .L5
+
+.L4:
+	mv s4 s2
+	mv s2 s3
+	mv s3 s4
+	sd s2 0(t1)
+	sd s3 1(t1)
+	j .L5
+
+# inc j
+.L5:
+	addi t1 t1 1
+	j .L2
+
+# inc i
+.L6:
+	addi t0 t0 1
+	li  t1 0
+
+	j .L1
+	
+	
+.L7:
+	addi zero zero 0
+	ld t0   0(zero)
+	ld t1   1(zero)
+	ld t2   2(zero)
+	ld s0   3(zero)
+	ld s1   4(zero)
+
+.L8:
+	addi zero zero 0
+	j .L8
