@@ -42,6 +42,7 @@ module data_path (
     wire [63:0]         sign_ext_j_b_w;
     wire [63:0]         addr_adder_sum_w;
     wire [63:0]         pc_next_address_w;
+    wire [7:0]          id_pc1_w;
 
     wire [63:0]         data2_w;
     wire [2:0]          func3_intm_w;
@@ -80,6 +81,9 @@ module data_path (
     wire [4:0]          ex_reg_write_addr_w;
     wire [2:0]          ex_func3_w;
     wire [6:0]          ex_func7_w;
+    wire [63:0]         ex_data2_j;
+    wire                ex_jal_w;
+    wire                ex_hz_jalr_w;
 
 
     wire                mem_reg_write_w;
@@ -119,7 +123,9 @@ module data_path (
         .PC_out             (id_pc_o),
         .hazard             (hazard_w),
         .wb_ff_in           (wb_ff_w),
-        .wb_ff_out          (id_wb_ff_w)
+        .wb_ff_out          (id_wb_ff_w),
+        .incre_pc_in        (pc1_w),
+        .incre_pc_out       (id_pc1_w)
     );
     assign branch_sign_ext_w= {{50{instr_w[31]}},instr_w[7],instr_w[30:25], instr_w[11:8]};
     assign sign_ext_jal_w= {{45{instr_w[31]}},instr_w[19:12], instr_w[20], instr_w[30:21]};
@@ -181,8 +187,9 @@ module data_path (
         .read_data2_o   (reg_read_data2_w)
         );
 
+
     assign sign_ext_w = (load_w == 1'b1 || immd_w == 1'b1) ? {{52{instr_w[31]}}, instr_w[31:20]} : {{52{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
-    assign func3_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[14:12] : 3'b000;
+    assign func3_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? ((jal_w==1'b0) ? instr_w[14:12] : 3'b000): 3'b000;
     assign func7_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[31:25] : 7'b0000000;
 // control instructions mux logic for ID stage
 
@@ -203,6 +210,8 @@ module data_path (
         .func7_in           (func7_intm_w), 
         .CLK                (clk_i),           
         .RST                (rst_i),
+        .jal_in             (jal_w),
+        .hz_jalr_in         (hz_jalr_w),
         .WRegEn_out         (ex_reg_write_w), 
         .WMemEn_out         (ex_mem_write_w), 
         .RMemEn_out         (ex_mem_read_w), 
@@ -215,14 +224,18 @@ module data_path (
         .sign_ext_out       (ex_sign_ext_w),
         .WReg1_out          (ex_reg_write_addr_w),
         .func3_out          (ex_func3_w),
-        .func7_out          (ex_func7_w)
+        .func7_out          (ex_func7_w),
+        .jal_out            (ex_jal_w),
+        .hz_jalr_out        (ex_hz_jalr_w)
+
     );
 
     assign data2_w = (ex_load_w == 1'b0 && ex_store_w == 1'b0 && ex_immd_w == 1'b0) ? ex_r2_out_w : ex_sign_ext_w;
+    assign ex_data2_j= (ex_jal_w || ex_hz_jalr_w) ? 64'h0000000000000000 : data2_w;
 
     alu_64_bit alu0 (
         .in_rs1     (ex_r1_out_w),
-        .in_rs2     (data2_w), 
+        .in_rs2     (ex_data2_j), 
         .in_funct3  (ex_func3_w),
         .in_funct7  (ex_func7_w),
         .out_rd     (alu_out_w)
