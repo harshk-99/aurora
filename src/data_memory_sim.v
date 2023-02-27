@@ -47,7 +47,7 @@ initial
           ram[30] = 64'h0000000000000000;
           ram[31] = 64'hff000000000000f0;
 
-                for (i = 32; i <= 255; i++) begin
+                for (i = 32; i <= 255; i=i+1) begin
                   ram[i] = 64'd0;
                 end
                 
