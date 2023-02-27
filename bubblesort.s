@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ld zero 0(zero)
 ld ra   1(zero)
 ld sp   2(zero)
@@ -32,6 +33,36 @@ li  t2 4
 	blt t0 t2 .L2
 	j .L7
 
+=======
+#init arr[] to memory
+
+li  s0 0
+li	a5 3
+sw	a5 0(s0)
+li	a5 5
+sw	a5 1(s0)
+li	a5 1
+sw	a5 2(s0)
+li	a5 2
+sw	a5 3(s0)
+li	a5 4
+sw	a5 4(s0)
+
+# t0 is i
+# t1 is j
+# t2 is 4
+# t3 is 4 - i
+
+li  t0 0
+li  t1 0
+li  t2 4
+
+.L1:
+	# i < 4
+	blt t0 t2 .L2
+	j .L7
+
+>>>>>>> Stashed changes
 .L2:
 	# 4 - i
 	sub t3 t2 t0
@@ -71,6 +102,7 @@ li  t2 4
 	
 .L7:
 	addi zero zero 0
+<<<<<<< Updated upstream
 	ld t0   0(zero)
 	ld t1   1(zero)
 	ld t2   2(zero)
@@ -80,3 +112,6 @@ li  t2 4
 .L8:
 	addi zero zero 0
 	j .L8
+=======
+	j .L7
+>>>>>>> Stashed changes
