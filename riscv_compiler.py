@@ -34,17 +34,17 @@ func7_dict = {
 }
 
 abi_dict = {
-    "00000": ["zero"],
-    "00001": ["ra"],
-    "00010": ["sp"],
-    "00011": ["gp"],
-    "00100": ["tp"],
-    "00101": ["t0"],
-    "00110": ["t1"],
-    "00111": ["t2"],
-    "01000": ["s0", "fp"],
-    "01001": ["s1"],
-    "01010": ["a0"],
+    "00000": ["zero", "x0"],
+    "00001": ["ra", "x1"],
+    "00010": ["sp", "x2"],
+    "00011": ["gp", "x3"],
+    "00100": ["tp", "x4"],
+    "00101": ["t0", "x5"],
+    "00110": ["t1", "x6"],
+    "00111": ["t2", "x7"],
+    "01000": ["s0", "fp", "x8"],
+    "01001": ["s1", "x9"],
+    "01010": ["a0", "x10"],
     "01011": ["a1"],
     "01100": ["a2"],
     "01101": ["a3"],
@@ -222,10 +222,12 @@ with open(filename, "r") as file:
         if (stripped_line != "" and stripped_line[0] != "#"):
             if stripped_line[-1] != ":":
                 inst_count += 1
-            elif (stripped_line[0] == "."):
+            #elif (stripped_line[0] == ""):
                 #print([stripped_line[:-1], inst_count+2])
+            else:
                 block_names[stripped_line[:-1]] = inst_count + \
-                    inst_start_mem + 2
+                    inst_start_mem 
+print_all()
 program_counter = 0
 with open(filename, "r") as file:
     for line in file:
@@ -246,7 +248,7 @@ with open(filename, "r") as file:
 
                 # generate binary of that assembly
                 instructions.append(assemble_riscv(stripped_line))
-                #print(program_counter, " " , instructions[len(instructions)-1])
+                print(program_counter, " " , instructions[len(instructions)-1])
                 program_counter += 1
 
                 # for formatting
@@ -266,7 +268,7 @@ with open(filename, "r") as file:
             #     print([stripped_line[:stripped_line.find(":")], inst_count+4])
             # #    block_names[stripped_line[:stripped_line.find(":")]] =(inst_count+1)*4+inst_start_mem
 
-f = open("i_mem.bin", "w")
+f = open("i_mem_bubblesort.bin", "w")
 for inst in instructions:
     f.write(f'{inst}\n')
 f.close()
