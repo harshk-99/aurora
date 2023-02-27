@@ -16,7 +16,7 @@ module register_file (
 
   always @(posedge clk_i) begin
     if (rst_i == 1'b1) begin
-      for(i = 0; i <= 31; i++)
+      for(i = 0; i <= 31; i=i+1)
         reg_file[i] <= 64'd0;
     end
   else begin
