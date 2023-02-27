@@ -22,13 +22,13 @@
 // 1-bit ALU building block alu_1_bit
 `timescale 1 ns / 100 ps
 
-module alu_64_bit
+module alu_64_bit_with_wires_working
     #( parameter DATA_WIDTH=64)
     (
-        input   [DATA_WIDTH-1:0]    		in_rs1,
-        input   [DATA_WIDTH-1:0]    		in_rs2, 
-        input   [2:0]   								in_funct3,
-        input   [6:0]               		in_funct7,
+        input   [DATA_WIDTH-1:0]    in_rs1,
+        input   [DATA_WIDTH-1:0]    in_rs2, 
+        input   [2:0]   in_funct3,
+        input   [6:0]               in_funct7,
         output  reg [DATA_WIDTH-1:0]    out_rd
     );
 		//reg [DATA_WIDTH-1:0] out_rd;
@@ -53,7 +53,10 @@ module alu_64_bit
 					end
             4'b0010:    // SLT
 					begin
-					 out_rd = {63'd0,(in_rs1 < in_rs2)?(1'b1):(1'b0)};
+					// This line wasn't 
+					//working as it was giving unsigned SLT results i.e. SLTU results
+					 //out_rd = {63'd0,(in_rs1 < in_rs2)?(1'b1):(1'b0)}; 
+					out_rd = {63'd0,($signed(in_rs1) < $signed(in_rs2))?($signed(1'b1)):($signed(1'b0))};
 					end
             4'b0011:    // SLTU -- needs to be looked at again
 					begin

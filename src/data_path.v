@@ -1,8 +1,8 @@
-`include "inst_memory.v"
+`include "inst_memory_sim.v"
 `include "control_unit.v"
 `include "register_file.v"
 `include "alu_64_bit.v"
-`include "data_memory.v"
+`include "data_memory_sim.v"
 `include "IDEX.v"
 `include "EXMEM.v"
 `include "MEMWB.v"
@@ -135,12 +135,13 @@ module data_path (
     assign addr_adder_sum_w= adder1_w + adder2_w;
     assign pc_next_address_w= ( true_branch_w || hz_jalr_w || jal_w) ? addr_adder_sum_w: pc1_w;
  
- br_alu bru0 (
-    .in_rs1             (reg_read_data1_w),
-    .in_rs2             (reg_read_data2_w),
-    .in_funct3          (func3_intm_w),
-    .out_branch         (branch_alu_w)
- );
+    br_alu bru0 (
+        .in_rs1             (reg_read_data1_w),
+        .in_rs2             (reg_read_data2_w),
+        .in_funct3          (func3_intm_w),
+        .out_branch         (branch_alu_w)
+    );
+    
     inst_memory im0 (clk_i, rst_i, pc_current_r, hazard_w, instr_w);
 
     hazard_detect hdu0 (
