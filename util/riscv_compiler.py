@@ -1,3 +1,6 @@
+import sys
+import getopt
+
 inst_type_dict = {
     "R-TYPE": ["add", "sub", "sll", "slt", "sltu", "xor", "srl", "sra", "or", "and"],
     "I-TYPE": ["addi", "slti", "sltiu", "xori", "ori", "andi", "slli", "srli", "srai", "ld", "jalr", "lb", "lh", "lw", "lbu", "lhu"],
@@ -207,13 +210,36 @@ def assemble_riscv(instruction):
 def print_all():
     print(block_names)
 
+
+input_file = ''
+output_file = ''
+
+if len(sys.argv) == 1:
+    print('Usage: python3 riscv_compiler.py -i <inputfile> -o <outputfile>')
+    sys.exit()
+
+try:
+    opts, args = getopt.getopt(sys.argv[1:], "hi:o:", ["ifile=", "ofile="])
+except getopt.GetoptError:
+    print('Usage: python3 riscv_compiler.py -i <inputfile> -o <outputfile>')
+    sys.exit(2)
+
+for opt, arg in opts:
+    if opt == '-h':
+        print('Usage: python3 riscv_compiler.py -i <inputfile> -o <outputfile>')
+        sys.exit()
+    elif opt in ("-i", "--ifile"):
+        input_file = arg
+    elif opt in ("-o", "--ofile"):
+        output_file = arg
+
 inst_start_mem = 0
 inst_count = 0
 current_pc = inst_start_mem
 
 block_names = {}
 instructions = []
-filename = "bubblesort.s"
+filename = input_file
 with open(filename, "r") as file:
     for line in file:
 
@@ -222,11 +248,9 @@ with open(filename, "r") as file:
         if (stripped_line != "" and stripped_line[0] != "#"):
             if stripped_line[-1] != ":":
                 inst_count += 1
-            #elif (stripped_line[0] == ""):
-                #print([stripped_line[:-1], inst_count+2])
             else:
                 block_names[stripped_line[:-1]] = inst_count + \
-                    inst_start_mem 
+                    inst_start_mem
 print_all()
 program_counter = 0
 with open(filename, "r") as file:
@@ -241,34 +265,17 @@ with open(filename, "r") as file:
                 for key, value in block_names.items():
                     #print("Jumping from ", current_pc , " to ", key , " ", value)
                     if key in stripped_line:
-                        print("Jumping from ", program_counter , " to ", key , " ", value)
-                    stripped_line = stripped_line.replace(key, str(value-program_counter))
-                    
-
+                        print("Jumping from ", program_counter,
+                              " to ", key, " ", value)
+                    stripped_line = stripped_line.replace(
+                        key, str(value-program_counter))
 
                 # generate binary of that assembly
                 instructions.append(assemble_riscv(stripped_line))
-                print(program_counter, " " , instructions[len(instructions)-1])
+                print(program_counter, " ", instructions[len(instructions)-1])
                 program_counter += 1
 
-                # for formatting
-                # bin_str = format(num, '032b')
-
-            #     print(inst_count, end="    ")
-            #     # adding the spaces for ez debug
-            #     for i in range(len(bin_str)):
-
-            #         if (i == 6 or i == 11 or i == 16 or i == 19 or i == 24):
-            #             print(bin_str[i], end=" ")
-            #         else:
-            #             print(bin_str[i], end="")
-            #     print("")
-
-            # elif (stripped_line[0] == "."):
-            #     print([stripped_line[:stripped_line.find(":")], inst_count+4])
-            # #    block_names[stripped_line[:stripped_line.find(":")]] =(inst_count+1)*4+inst_start_mem
-
-f = open("i_mem_bubblesort.bin", "w")
+f = open(output_file, "w")
 for inst in instructions:
     f.write(f'{inst}\n')
 f.close()
