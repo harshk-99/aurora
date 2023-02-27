@@ -33,7 +33,7 @@ initial begin
   rst = 1;
   #50;
   rst = 0;
-  #2800;
+  #2900;
   // $monitor("Took 62 clocks to complete. Execution time: 1.24us");
   $display("Contents of Register file:");
   for(i = 0; i <= 7; i=i+1) begin
