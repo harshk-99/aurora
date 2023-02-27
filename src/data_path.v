@@ -18,6 +18,7 @@ module data_path (
 
 
     wire [7:0]          pc1_w;
+    wire [7:0]          hz_pc_w;
     wire                wb_ff_w;
     wire [31:0]         instr_w;
     wire                mem_read_w;
@@ -55,6 +56,7 @@ module data_path (
     wire                true_branch_w;
     wire                branch_alu_w;
     reg  [7:0]          pc_current_r;
+    reg  [7:0]          pc_prev_r;
 
     wire                hz_reg_write_w;
     wire                hz_mem_write_w;
@@ -101,17 +103,23 @@ module data_path (
     wire [63:0]         wb_alu_out_w;
 
     always @(posedge clk_i) begin
-        if (rst_i == 1'b1)
+        if (rst_i == 1'b1) begin
             pc_current_r <= 8'd0;
-        else if (hazard_w != 1'b1)
+            pc_prev_r    <= 8'd0;
+        end
+        else if (hazard_w != 1'b1) begin
             pc_current_r <= pc_next_address_w;
-        else
+            pc_prev_r    <= pc_current_r;
+        end
+        else begin
             pc_current_r <= pc_current_r;
+            pc_prev_r    <= pc_prev_r;
+        end
     end
 
     assign pc1_w = pc_current_r + 8'd1;
    
-    assign true_branch_w= branch_alu_w && hz_branch_w;
+    assign true_branch_w= branch_alu_w & hz_branch_w;
 
     //wristband flipflop logic
     assign wb_ff_w= (hz_jalr_w || jal_w || true_branch_w);
@@ -127,6 +135,7 @@ module data_path (
         .incre_pc_in        (pc1_w),
         .incre_pc_out       (id_pc1_w)
     );
+    
     assign branch_sign_ext_w= {{50{instr_w[31]}},instr_w[7],instr_w[30:25], instr_w[11:8]};
     assign sign_ext_jal_w= {{45{instr_w[31]}},instr_w[19:12], instr_w[20], instr_w[30:21]};
     assign sign_ext_j_b_w= true_branch_w ? branch_sign_ext_w: sign_ext_w;
@@ -141,8 +150,10 @@ module data_path (
         .in_funct3          (func3_intm_w),
         .out_branch         (branch_alu_w)
     );
+
+    assign hz_pc_w = (hazard_w) ? pc_prev_r : pc_current_r;
     
-    inst_memory im0 (clk_i, rst_i, pc_current_r, hazard_w, instr_w);
+    inst_memory im0 (clk_i, hz_pc_w, instr_w);
 
     hazard_detect hdu0 (
         .id_rs1_i        (reg_read_addr1_w),
@@ -261,7 +272,7 @@ module data_path (
         .reg_write_addr_o   (mem_reg_write_addr_w) 
     );
 
-    data_memory dm0 (clk_i, rst_i, mem_alu_out_w[7:0], mem_r2_out_w, mem_mem_write_w, mem_mem_read_w, mem_read_data_w);
+    data_memory dm0 (clk_i, mem_alu_out_w[7:0], mem_r2_out_w, mem_mem_write_w, mem_read_data_w);
 
     MEMWB memwb0 (
         .clk_i                  (clk_i),             
