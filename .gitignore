@@ -1,3 +1,6 @@
+# ignore all .bin files
+*.bin
+
 # ignore all xst
 ./synth/xst/**
 

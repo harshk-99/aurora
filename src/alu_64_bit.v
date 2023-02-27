@@ -22,7 +22,7 @@
 // 1-bit ALU building block alu_1_bit
 `timescale 1 ns / 100 ps
 
-module alu_64_bit_with_wires_working
+module alu_64_bit
     #( parameter DATA_WIDTH=64)
     (
         input   [DATA_WIDTH-1:0]    in_rs1,
