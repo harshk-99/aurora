@@ -189,7 +189,7 @@ module data_path (
 
     register_file rf0 (
         .clk_i          (clk_i),
-        .rst_i          (rst_i),
+        // .rst_i          (rst_i),
         .write_en_i     (wb_reg_write_w),
         .write_addr_i   (wb_reg_write_addr_w),
         .write_data_i   (reg_write_data_w),
