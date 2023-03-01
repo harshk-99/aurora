@@ -1,11 +1,14 @@
-ld zero 0(zero)
-ld ra   1(zero)
-ld sp   2(zero)
-ld gp   3(zero)
-ld tp   4(zero)
+# all registers are using ld64 ABI name convention
+# exposing the random/non-sorted data to be written to the data memory
+# exposed to be cpatrued by logic_thief for the purpose of demonstration in DETER Lab  
+ld zero 0(zero)		#load the data_memory[0] to zero/x0 
+ld ra   1(zero)		#load the data_memory[1] to ra/x1 
+ld sp   2(zero)		#load the data_memory[2] to sp/x2 	
+ld gp   3(zero)		#load the data_memory[3] to gp/x3 	
+ld tp   4(zero)		#load the data_memory[4] to tp/x4 	
 
 #init arr[] to memory
-
+# writing the nnon-sorted data into the data memory form locatiojns 0 to 4
 li  s0 0
 li	a5 3
 sw	a5 0(s0)
@@ -30,6 +33,7 @@ li  t2 4
 .L1:
 	# i < 4
 	blt t0 t2 .L2
+	# i > 4, go the end
 	j .L7
 
 .L2:
@@ -70,12 +74,14 @@ li  t2 4
 	
 	
 .L7:
-	addi zero zero 0
-	ld t0   0(zero)
-	ld t1   1(zero)
-	ld t2   2(zero)
-	ld s0   3(zero)
-	ld s1   4(zero)
+	# logic for exposing the data written to come on the bus so that logic thief
+	# can capture the data
+	addi zero zero 0					
+	ld t0   0(zero)		#load the data_memory[0] to t0
+	ld t1   1(zero)     #load the data_memory[1] to t1 
+	ld t2   2(zero)     #load the data_memory[2] to t2 	
+	ld s0   3(zero)     #load the data_memory[3] to t3 	
+	ld s1   4(zero)     #load the data_memory[4] to t4 	
 
 .L8:
 	addi zero zero 0
