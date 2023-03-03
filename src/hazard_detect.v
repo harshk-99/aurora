@@ -9,23 +9,14 @@ module hazard_detect (
   input [4:0] mem_rd_i,
   input       ex_reg_write_i,
   input       mem_reg_write_i,
-  input       mem_read_i, 
-  input       mem_to_reg_i, 
-  input       mem_write_i, 
-  input       reg_write_i, 
-  input       load_i, 
-  input       store_i, 
-  input       immd_i, 
-  input       jal_i, 
-  input       jalr_i, 
-  input       branch_i,
+  input       jump_i,
   output      hazard_o
 );
 assign hazard_o = (
-  (ex_reg_write_i && (((ex_rd_i == id_rs1_i) && (id_rs1_i!=5'b00000)) || ((ex_rd_i == id_rs2_i) && (id_rs2_i!=5'b00000))))
+  (~jump_i && ((ex_reg_write_i && (((ex_rd_i == id_rs1_i) && (id_rs1_i!=5'b00000)) || ((ex_rd_i == id_rs2_i) && (id_rs2_i!=5'b00000))))
   ||
-  (mem_reg_write_i && (((mem_rd_i == id_rs1_i) && (id_rs1_i!=5'b00000)) || ((mem_rd_i == id_rs2_i) && (id_rs2_i!=5'b00000))))
-  )   ? 1'b1 : 1'b0;
+  (mem_reg_write_i && (((mem_rd_i == id_rs1_i) && (id_rs1_i!=5'b00000)) || ((mem_rd_i == id_rs2_i) && (id_rs2_i!=5'b00000)))))
+  ))   ? 1'b1 : 1'b0;
      
 
 endmodule
