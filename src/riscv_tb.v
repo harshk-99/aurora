@@ -18,15 +18,13 @@ initial begin
 end
 
 initial begin
-  $monitor("PC: 0x%0h\n ram0 = 0x%0h\n ram1 = 0x%0h\n ram2 = 0x%0h\n ram3 = 0x%0h\n ram4 = 0x%0h\n s2 = 0x%0h\n s3 = 0x%0h\n t0 = 0x%0h\n t1 = 0x%0h\n", 
+  $monitor("PC: 0x%0h\n ram0 = 0x%0h\n ram1 = 0x%0h\n ram2 = 0x%0h\n ram3 = 0x%0h\n ram4 = 0x%0h\n s2 = 0x%0h\n s3 = 0x%0h\n", 
     uut.pc_current_r, 
     uut.dm0.ram[0],
     uut.dm0.ram[1],
     uut.dm0.ram[2],
     uut.dm0.ram[3],
     uut.dm0.ram[4],
-    uut.rf0.reg_file[18],
-    uut.rf0.reg_file[19],
     uut.rf0.reg_file[5],
     uut.rf0.reg_file[6]
   );
