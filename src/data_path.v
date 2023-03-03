@@ -1,7 +1,7 @@
 `include "inst_memory_sim.v"
 `include "control_unit.v"
 `include "register_file.v"
-`include "alu_64_bit.v"
+`include "alu_64_bit_slim_withbr.v"
 `include "data_memory_sim.v"
 `include "IDEX.v"
 `include "EXMEM.v"
@@ -176,13 +176,17 @@ module data_path (
     assign branch_sign_ext_w = {{50{instr_w[31]}},instr_w[7],instr_w[30:25], instr_w[11:8]};
     assign sign_ext_jal_w = {{45{instr_w[31]}},instr_w[19:12], instr_w[20], instr_w[30:21]};
     assign sign_ext_w = (immd_w == 1'b1) ? {{52{instr_w[31]}}, instr_w[31:20]} : {{52{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
-    assign func3_intm_w = (load_w == 1'b1 || store_w == 1'b1 || hz_jal_w == 1'b1) ? 3'b000 : instr_w[14:12];                   // ? check if hz
+    assign func3_intm_w = (load_w == 1'b1 || store_w == 1'b1 || hz_jal_w == 1'b1) ? 3'b000 : instr_w[14:12];                  
     assign func7_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[30] : 1'b0;
+
+    wire func7_br_w;
+    assign func7_br_w   = (hz_branch_w && instr_w[14:12] == 3'b100) ? 1'b1 : func7_intm_w;
 // control instructions mux logic for ID stage
 
     assign sign_ext_i_j_b_w = hz_jalr_w ? sign_ext_w : (hz_jal_w ? sign_ext_jal_w : (hz_branch_w ? branch_sign_ext_w : sign_ext_w));
 
     assign rs2_swch_w = ~(load_w | store_w | immd_w);
+    
 
 
     IDEX idex0 (
@@ -195,7 +199,7 @@ module data_path (
         .WReg1_in           (reg_write_addr_w),
         .sign_ext_in        (sign_ext_i_j_b_w),
         .func3_in           (func3_intm_w), 
-        .func7_in           (func7_intm_w),
+        .func7_in           (func7_br_w),
         .jal_in             (hz_jal_w),
         .jalr_in            (hz_jalr_w),
         .br_in              (hz_branch_w),
@@ -228,7 +232,7 @@ module data_path (
 
 
 
-    alu_64_bit alu0 (
+    alu_64_bit_slim_withbr alu0 (
         .in_rs1     (ex_r1_out_w),
         .in_rs2     (ex_data2_j), 
         .in_funct3  (ex_func3_w),
@@ -237,7 +241,7 @@ module data_path (
         );
 
     assign true_branch_w = alu_out_w[0] & ex_branch_w;               
-    assign jump_w        = true_branch_w || ex_jalr_w || ex_jal_w;
+    assign jump_w        = true_branch_w | ex_jalr_w | ex_jal_w;
 
     assign pc_next_address_w = (jump_w) ? addr_adder_sum_w: pc1_w;
 
