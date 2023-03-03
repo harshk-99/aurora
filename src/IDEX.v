@@ -48,10 +48,10 @@ always @(posedge CLK ) begin
         jal_out          <= 1'b0;
         jalr_out         <= 1'b0;
         br_out           <= 1'b0;
-        pc_out           <= 1'b0;
+        pc_out           <= 8'd0;
 
     end
-    else
+    else begin
         WRegEn_out       <= WRegEn_in;
         WMemEn_out       <= WMemEn_in;
         mem_to_reg_out   <= mem_to_reg_in;
@@ -66,7 +66,7 @@ always @(posedge CLK ) begin
         jalr_out         <= jalr_in;
         br_out           <= br_in;  
         pc_out           <= pc_in;  
-
+    end
 end
 
 endmodule
