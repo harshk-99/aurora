@@ -18,47 +18,20 @@
 // 1-bit ALU building block alu_1_bit
 
 module br_alu
-    #( parameter DATA_WIDTH=64)
+    #( parameter DATA_WIDTH=16)
     (
         input   [DATA_WIDTH-1:0]    in_rs1,
         input   [DATA_WIDTH-1:0]    in_rs2, 
-        input   [2:0]   in_funct3,
-		output  reg out_branch
+				output  reg out_branch
     );
 		 
     always @(*) // same as   always @(A, B, Ainv, Binv, CIN, Opr, LESS) 
-	    begin  : combinational_logic // named procedural block
-		out_branch=0;
-		case (in_funct3)
-			3'b000:   // BEQ
-				  begin
-					out_branch = in_rs1==in_rs2; 
-				  end
-			3'b001:    // BNE
-					begin        
-					 out_branch = in_rs1 !=in_rs2[5:0];
-					end
-            3'b100:    // BLT
-					begin
-					out_branch = ($signed(in_rs1) < $signed(in_rs2)); 
-					end
-            3'b101:    // BGE
-					begin
-					 out_branch =  ($signed(in_rs1) >= $signed(in_rs2)); 
-					end
-            3'b110:    // BLTU
-					begin
-					out_branch = in_rs1 < in_rs2; 
-					end
-            3'b111:    // BGEU
-					begin
-					 out_branch = in_rs1 >= in_rs2;
-					end
-            default:    
-              begin
-				out_branch=0;
-              end
-		  endcase
+	    begin
+				if ($signed(in_rs1) < $signed(in_rs2)) begin
+					out_branch = 1'b1;
+				end else begin
+					out_branch= 1'b0;			
+				end
 	end 
 	
 endmodule 
