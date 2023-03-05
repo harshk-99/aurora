@@ -260,8 +260,10 @@ program_counter = 0
 with open(filename, "r") as file:
     for line in file:
 
+        # remove the commas and trailing comments in the line
+        stripped_line = line.replace(",","").split('#',1)[0]
         # Strip the line of leading and trailing whitespace
-        stripped_line = line.strip()
+        stripped_line = stripped_line.strip()
         if (stripped_line != "" and stripped_line[0] != "#"):
             if (stripped_line[-1] != ":"):
                 # Print assmebly code line
