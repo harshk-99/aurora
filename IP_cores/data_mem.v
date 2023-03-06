@@ -30,14 +30,12 @@
 // supported by Xilinx, Mentor Graphics and Synplicity synthesis
 // tools. Ensure they are correct for your synthesis tool(s).
 
-// You must compile the wrapper file inst_mem.v when simulating
-// the core, inst_mem. When compiling the wrapper file, be sure to
+// You must compile the wrapper file data_mem.v when simulating
+// the core, data_mem. When compiling the wrapper file, be sure to
 // reference the XilinxCoreLib Verilog simulation library. For detailed
 // instructions, please refer to the "CORE Generator Help".
 
-`timescale 1ns/1ps
-
-module inst_mem(
+module data_mem(
 	addr,
 	clk,
 	din,
@@ -47,8 +45,8 @@ module inst_mem(
 
 input [7 : 0] addr;
 input clk;
-input [31 : 0] din;
-output [31 : 0] dout;
+input [63 : 0] din;
+output [63 : 0] dout;
 input we;
 
 // synthesis translate_off
@@ -68,11 +66,11 @@ input we;
 		.c_has_sinit(0),
 		.c_has_we(1),
 		.c_limit_data_pitch(18),
-		.c_mem_init_file("inst_mem.mif"),
+		.c_mem_init_file("data_mem.mif"),
 		.c_pipe_stages(0),
 		.c_reg_inputs(0),
 		.c_sinit_value("0"),
-		.c_width(32),
+		.c_width(64),
 		.c_write_mode(2),
 		.c_ybottom_addr("0"),
 		.c_yclk_is_rising(1),
@@ -102,7 +100,6 @@ input we;
 
 // XST black box declaration
 // box_type "black_box"
-// synthesis attribute box_type of inst_mem is "black_box"
+// synthesis attribute box_type of data_mem is "black_box"
 
 endmodule
-

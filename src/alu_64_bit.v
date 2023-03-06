@@ -20,10 +20,9 @@
 //-------------------------------------------------------------------------------
 
 // 1-bit ALU building block alu_1_bit
-`timescale 1 ns / 100 ps
 
 module alu_64_bit
-    #( parameter DATA_WIDTH=16)
+		#( parameter DATA_WIDTH=16)
     (
         input   [DATA_WIDTH-1:0]    in_rs1,
         input   [DATA_WIDTH-1:0]    in_rs2, 
@@ -51,7 +50,7 @@ module alu_64_bit
 					begin
 					 out_rd = in_rs1 | in_rs2; 
 					end
-				4'b1000	:   // Subtraction Function
+			4'b1000	:   // Subtraction Function
 				  begin
 					out_rd = in_rs1 - in_rs2; 
 				  end

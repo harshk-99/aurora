@@ -9,16 +9,6 @@ module hazard_detect (
   input [2:0] mem_rd_i,
   input       ex_reg_write_i,
   input       mem_reg_write_i,
-  input       mem_read_i, 
-  input       mem_to_reg_i, 
-  input       mem_write_i, 
-  input       reg_write_i, 
-  input       load_i, 
-  input       store_i, 
-  input       immd_i, 
-  input       jal_i, 
-  input       jalr_i, 
-  input       branch_i,
   output      hazard_o
 );
 assign hazard_o = (
