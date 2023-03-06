@@ -1,7 +1,7 @@
-`timescale 1ns/1ps
 `include "data_path.v"
 
 module riscv_tb;
+
 
 reg clk;
 reg rst;

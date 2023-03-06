@@ -1,4 +1,3 @@
-`timescale 1ns/1ns
 `include "register_file.v"
 
 module generic_tb;
