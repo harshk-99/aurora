@@ -6,7 +6,7 @@
 `include "IDEX.v"
 `include "EXMEM.v"
 `include "MEMWB.v"
-`include "hazard_detect.v"
+//`include "hazard_detect.v"
 `include "IFID.v"
 `include "br_alu.v"
 
@@ -18,7 +18,7 @@ module data_path (
 
 
     wire [7:0]          pc1_w;
-    wire [7:0]          hz_pc_w;
+    //wire [7:0]          hz_pc_w;
     wire                wb_ff_w;
     wire [31:0]         instr_w;
     wire                mem_to_reg_w;
@@ -49,20 +49,20 @@ module data_path (
     wire                func7_intm_w;
     wire [15:0]         alu_out_w;
     wire [15:0]         mem_read_data_w;
-    wire                hazard_w;
+    //wire                hazard_w;
     wire [7:0]          id_pc_o;
     wire                id_wb_ff_w;
-    wire                true_branch_w;
+    //wire                true_branch_w;   //treating branch_alu_w signal originating from bralu as branch taken or NT signal
     wire                branch_alu_w;
     reg  [7:0]          pc_current_r;
     reg  [7:0]          pc_prev_r;
 
-    wire                hz_reg_write_w;
-    wire                hz_mem_write_w;
-    wire                hz_mem_to_reg_w;
-    wire                hz_load_w;
-    wire                hz_store_w;
-    wire                hz_branch_w;
+    // wire                hz_reg_write_w;
+    // wire                hz_mem_write_w;
+    // wire                hz_mem_to_reg_w;
+    // wire                hz_load_w;
+    // wire                hz_store_w;
+    // wire                hz_branch_w;
     wire [15:0]         adder1_w;
     wire [15:0]         adder2_w;
     
@@ -101,10 +101,10 @@ module data_path (
             pc_current_r <= 8'd0;
             pc_prev_r    <= 8'd0;
         end
-        else if (hazard_w != 1'b1) begin
-            pc_current_r <= pc_next_address_w;
-            pc_prev_r    <= pc_current_r;
-        end
+        // else if (hazard_w != 1'b1) begin
+        //     pc_current_r <= pc_next_address_w;
+        //     pc_prev_r    <= pc_current_r;
+        //end
         else begin
             pc_current_r <= pc_current_r;
             pc_prev_r    <= pc_prev_r;
@@ -113,27 +113,27 @@ module data_path (
 
     assign pc1_w = pc_current_r + 8'd1;
    
-    assign true_branch_w= branch_alu_w & hz_branch_w;
+    //assign true_branch_w= branch_alu_w & hz_branch_w;  // don't need guardian angel :)
 
     //wristband flipflop logic
-    assign wb_ff_w= (jal_w || true_branch_w);
+    assign wb_ff_w= (jal_w || branch_alu_w); //replaced truebranch
 
     IFID ifid0 (
         .CLK                (clk_i),           
         .RST                (rst_i),
         .PC_in              (pc_current_r),
         .PC_out             (id_pc_o),
-        .hazard             (hazard_w),
+        //.hazard             (hazard_w),
         .wb_ff_in           (wb_ff_w),
         .wb_ff_out          (id_wb_ff_w)
     );
     
     assign branch_sign_ext_w= {{5{instr_w[31]}},instr_w[7],instr_w[30:25], instr_w[11:8]};
     assign sign_ext_jal_w= {instr_w[19:15], instr_w[20], instr_w[30:21]};
-    assign sign_ext_j_b_w= true_branch_w ? branch_sign_ext_w: sign_ext_w;
+    assign sign_ext_j_b_w= branch_alu_w ? branch_sign_ext_w: sign_ext_w;
     assign adder2_w= jal_w ? sign_ext_jal_w: sign_ext_j_b_w;
     assign addr_adder_sum_w= id_pc_o + adder2_w;
-    assign pc_next_address_w= ( true_branch_w || jal_w) ? addr_adder_sum_w: pc1_w;
+    assign pc_next_address_w= ( branch_alu_w || jal_w) ? addr_adder_sum_w: pc1_w;
 
     br_alu br0 (
         .in_rs1     (reg_read_data1_w),
@@ -141,19 +141,19 @@ module data_path (
         .out_branch (branch_alu_w)
     );
 
-    assign hz_pc_w = (hazard_w) ? pc_prev_r : pc_current_r;
+    //assign hz_pc_w = (hazard_w) ? pc_prev_r : pc_current_r;
     
-    inst_memory im0 (clk_i, hz_pc_w, instr_w);
+    inst_memory im0 (clk_i, pc_current_r, instr_w);
 
-    hazard_detect hdu0 (
-        .id_rs1_i        (reg_read_addr1_w),
-        .id_rs2_i        (reg_read_addr2_w),
-        .ex_rd_i         (ex_reg_write_addr_w[2:0]),
-        .mem_rd_i        (mem_reg_write_addr_w[2:0]),
-        .ex_reg_write_i  (ex_reg_write_w),
-        .mem_reg_write_i (mem_reg_write_w),
-        .hazard_o        (hazard_w)
-    );
+    // hazard_detect hdu0 (
+    //     .id_rs1_i        (reg_read_addr1_w),
+    //     .id_rs2_i        (reg_read_addr2_w),
+    //     .ex_rd_i         (ex_reg_write_addr_w[2:0]),
+    //     .mem_rd_i        (mem_reg_write_addr_w[2:0]),
+    //     .ex_reg_write_i  (ex_reg_write_w),
+    //     .mem_reg_write_i (mem_reg_write_w),
+    //     .hazard_o        (hazard_w)
+    // );
 
     control_unit cu0 (
         .opcode_i       (instr_w[6:0]),
@@ -174,7 +174,7 @@ module data_path (
     assign reg_write_addr_w = instr_w[10:7];
 //bubble injection logic into EX stage
 
-    assign {hz_reg_write_w, hz_mem_write_w, hz_branch_w} = (hazard_w == 1'b1) ? 3'b0 : {reg_write_w, mem_write_w, branch_w};
+    //assign {hz_reg_write_w, hz_mem_write_w, hz_branch_w} = (hazard_w == 1'b1) ? 3'b0 : {reg_write_w, mem_write_w, branch_w};
 
     register_file rf0 (
         .clk_i          (clk_i),
@@ -197,8 +197,8 @@ module data_path (
 
 
     IDEX idex0 (
-        .WRegEn_in          (hz_reg_write_w), 
-        .WMemEn_in          (hz_mem_write_w), 
+        .WRegEn_in          (reg_write_w),  //removed hz wires
+        .WMemEn_in          (mem_write_w), 
         .mem_to_reg_in      (mem_to_reg_w),
         .rs2_swch_in        (rs2_swch_w), 
         .R1out_in           (reg_read_data1_w), 
