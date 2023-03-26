@@ -27,6 +27,12 @@ li  ra 0
 li  sp 0
 li  gp 4
 
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+
 .L1:
 	# i < 4
 	blt ra gp .L2
@@ -36,6 +42,12 @@ li  gp 4
 	# 4 - i
 	sub tp gp ra
 	# j < 4 - i
+	add zero zero zero
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
 	blt sp tp .L3
 	j .L6
 
@@ -48,6 +60,11 @@ li  gp 4
 	ld t0 0(sp)
 	# load at loc j + 1
 	ld t1 1(sp)
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
 	# [j + 1] < [j]
 	blt t1 t0 .L4
 	j .L5
@@ -55,7 +72,17 @@ li  gp 4
 .L4:
 	mv t2 t0
 	mv t0 t1
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
 	mv t1 t2
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
+	addi zero zero 0
 	sd t0 0(sp)
 	sd t1 1(sp)
 	j .L5
