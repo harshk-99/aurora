@@ -18,10 +18,10 @@
 // 1-bit ALU building block alu_1_bit
 
 module br_alu
-    #( parameter DATA_WIDTH=16	)
+    #( parameter PROC_DATA_WIDTH=16	)
     (
-        input   [DATA_WIDTH-1:0]    in_rs1,
-        input   [DATA_WIDTH-1:0]    in_rs2, 
+        input   [PROC_DATA_WIDTH-1:0]    in_rs1,
+        input   [PROC_DATA_WIDTH-1:0]    in_rs2, 
         //input   [2:0]   in_funct3,
 		output  reg out_branch
     );

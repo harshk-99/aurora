@@ -23,18 +23,18 @@
 `timescale 1 ns / 100 ps
 
 module alu_16_bit
-    #( parameter DATA_WIDTH=16)
+    #( parameter PROC_DATA_WIDTH=16)
     (
-        input   [DATA_WIDTH-1:0]       in_rs1,
-        input   [DATA_WIDTH-1:0]       in_rs2, 
+        input   [PROC_DATA_WIDTH-1:0]       in_rs1,
+        input   [PROC_DATA_WIDTH-1:0]       in_rs2, 
         input   [2:0]                  in_funct3,
         input                  	       in_funct7,
-        output  reg [DATA_WIDTH-1:0]   out_rd
+        output  reg [PROC_DATA_WIDTH-1:0]   out_rd
     );
 
    // local variables
    wire [3:0]                          funct7_and_3;
-   wire signed [DATA_WIDTH-1:0]        signed_in_rs1;
+   wire signed [PROC_DATA_WIDTH-1:0]        signed_in_rs1;
 
    // continuous assignments
    assign funct7_and_3 = {in_funct7,in_funct3};
@@ -57,7 +57,7 @@ module alu_16_bit
 	     end
 	  4'b1101:      // SRA
 	     begin
-               // This number 3:0 should be changed if we increase the DATA_WIDTH
+               // This number 3:0 should be changed if we increase the PROC_DATA_WIDTH
 	       out_rd = in_rs1 >>> in_rs2[3:0]; 
 	     end
 	  default:    
@@ -67,4 +67,4 @@ module alu_16_bit
       endcase
    end 
 
-endmodule //alu_16_bit
+endmodule //alu_64_bit
