@@ -1,5 +1,5 @@
 module register_file
-   # (parameter PROC_DATA_WIDTH=16, PROC_REGFILE_LOG2_DEEP=5)
+   # (parameter PROC_DATA_WIDTH=16, PROC_REGFILE_LOG2_DEEP=5, NUM_REGISTERS=32)
    (
       input          clk_i,
       input          write_en_i,
@@ -10,8 +10,6 @@ module register_file
       output [PROC_DATA_WIDTH-1:0]                read_data1_o,
       output [PROC_DATA_WIDTH-1:0]                read_data2_o
    );
-
-   localparam NUM_REGISTERS = 32;
 
    reg [PROC_DATA_WIDTH-1:0] reg_file [NUM_REGISTERS-1:0];
 

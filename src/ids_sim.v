@@ -4,12 +4,13 @@
 // PARAMETERIZED
 //////////////////////////////////////////////////////////////////////////////////
 
-//`define UDP_REG_ADDR_WIDTH 16
-//`define CPCI_NF2_DATA_WIDTH 16
+`define UDP_REG_ADDR_WIDTH 16
+`define CPCI_NF2_DATA_WIDTH 16
 //`define IDS_BLOCK_TAG 1
-//`define IDS_REG_ADDR_WIDTH 16
+`define IDS_BLOCK_ADDR 1
+`define IDS_REG_ADDR_WIDTH 16
 
-module ids
+module ids_sim
    #(
       parameter DATA_WIDTH = 64,
       parameter CTRL_WIDTH = DATA_WIDTH/8,
@@ -46,15 +47,23 @@ module ids
       input                                clk
    );
 
-   //wire rst_i;
-   //wire clk_i;
-   //
-   //assign rst_i = reset;
-   //assign clk_i = clk;
+   wire rst_i;
+   wire clk_i;
+   
+   assign rst_i = reset;
+   assign clk_i = clk;
 
    //---------------------------------
-   //wire rst;
-   //assign rst =reset;
+   wire rst;
+   assign rst =reset;
+   assign reg_req_out = reg_req_in; 
+   assign reg_ack_out = reg_ack_in; 
+   assign reg_rd_wr_L_out = reg_rd_wr_L_in;
+   assign reg_addr_out = reg_addr_in;
+   assign reg_data_out = reg_data_in; 
+   assign reg_src_out = reg_src_in;
+
+
    // software registers
    wire [31:0]    sw_readaddr_w;
    wire [31:0]    sw_cmd;
@@ -100,10 +109,10 @@ module ids
    localparam THREAD1_STATE            = 2'b01;
    localparam THREAD2_STATE            = 2'b10;
    localparam THREAD3_STATE            = 2'b11;
-   localparam THREAD0_START_ADDR       = 8'd0;
-   localparam THREAD1_START_ADDR       = 8'd30;
-   localparam THREAD2_START_ADDR       = 8'd59;
-   localparam THREAD3_START_ADDR       = 8'd89;
+	localparam THREAD0_START_ADDR       = 8'd0;
+   localparam THREAD1_START_ADDR       = 8'd31;
+   localparam THREAD2_START_ADDR       = 8'd61;
+   localparam THREAD3_START_ADDR       = 8'd92;
     
    
    // latch 1 cycle to meet FSM next state logic
@@ -744,23 +753,23 @@ module ids
 
 
    //-------------- Logic Thief Integration
-   wire     [95:0]   dataout_96bit_w;
+   //wire     [95:0]   dataout_96bit_w;
 
-   always @(*) begin
-      {hw_data_ctrl, hw_data_high, hw_data_low} = {dataout_96bit_w};
-   end
+   //always @(*) begin
+   //   {hw_data_ctrl, hw_data_high, hw_data_low} = {dataout_96bit_w};
+   //end
 
-   logic_thief lt0(
-      // inputs from fifo_sram
-      .probe_data_i     (din_fifo_sram),
-      .probe_addr_i     (fifo_sram_write_addr),
-      .probe_wea_i      (fifo_sram_wen_w),
-      // inputs from software registers
-      .cmd_i            (sw_cmd),
-      .addr_i           (sw_readaddr_w),
-      .data_o           (dataout_96bit_w),
-      .clk_i            (clk)
-   );
+   //logic_thief lt0(
+   //   // inputs from fifo_sram
+   //   .probe_data_i     (din_fifo_sram),
+   //   .probe_addr_i     (fifo_sram_write_addr),
+   //   .probe_wea_i      (fifo_sram_wen_w),
+   //   // inputs from software registers
+   //   .cmd_i            (sw_cmd),
+   //   .addr_i           (sw_readaddr_w),
+   //   .data_o           (dataout_96bit_w),
+   //   .clk_i            (clk)
+   //);
 
    generic_regs
    #( 
