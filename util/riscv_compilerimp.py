@@ -8,7 +8,7 @@ import sys
 import getopt
 import os
 
-#input_file = os.path.abspath("./aurora/sw/copy_multithreaded_patterncounter_lab11.s")
+#input_file = os.path.abspath("./aurora/sw/multithreaded_patterncounter_sim.s")
 #output_file = os.path.abspath("./aurora/initialization/copy_lab11.txt")
 
 inst_type_dict = {
@@ -115,7 +115,7 @@ def parseIType(parts):
             [(i, abi_list.index(parts[1])) for i, abi_list in enumerate(list(abi_dict.values())) if parts[1] in abi_list][0][0]]
         rs1 = list(abi_dict.keys())[
             [(i, abi_list.index(parts[2])) for i, abi_list in enumerate(list(abi_dict.values())) if parts[2] in abi_list][0][0]]
-        if (parts[0] == "slli" or parts[0] == "srli" or parts[0] == "slai"):
+        if (parts[0] == "slli" or parts[0] == "srli" or parts[0] == "srai"):
             immd12 = list(func7_dict.keys())[
                 [(i, func7_list.index(parts[0])) for i, func7_list in enumerate(list(func7_dict.values())) if parts[0] in func7_list][0][0]] + getBinary(int(parts[3]), 5)
         else:
