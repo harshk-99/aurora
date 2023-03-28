@@ -109,7 +109,6 @@ addi a5 s1 0
 li a1 20
 sub s1 s1 a1
 srai a1 s1 5
-add a3 a1 zero
 li s1 1
 addi a4 a0 0
 #offset of 7 from readptr is present in our payload for thread1
@@ -164,15 +163,14 @@ sub a7 a7 s3
 srai s3 a7 5
 li a7 1
 #offset of 8 is present in our payload for the packet
-li s4 8
-add s2 s2 s4
+addi s2 s2 8
 # 27247 in decimal is equivalent to 0x6A6F and 0x6A is 'j' and 0x6F is 'o'
 li s4 27247
 .thread2_main:
 blt s3 a7 .thread2_loopfinish
 ld s5 0(s2)
-sub a3 a3 a2
-blt a3 s1 .thread2_matchfound
+sub s5 s5 s4
+blt s5 a7 .thread2_matchfound
 .thread2_loopcontinue:
 addi s2 s2 4
 sub s3 s3 a7
@@ -186,7 +184,7 @@ j .thread2_loopcontinue
 srai s7 s7 3
 addi s7 s7 1
 add s6 s6 s7
-sw a6 0(s7) 
+sw a6 0(s6) 
 li s2 1
 sw s2 1024(zero) 
 j .thread2_gobacktowait
@@ -217,18 +215,16 @@ sub s9 s9 s11
 srai s11 s9 5
 li s9 1
 #offset of 9 is present in our payload for the packet
-li t3 9
-add s10 s10 t3
+addi s10 s10 9
 # 24937 in decimal is equivalent to 0x6169 and 0x61 is 'a' and 0x6F is 'i'
 li t3 24937
 .thread3_main:
 blt s11 s9 .thread3_loopfinish
-ld s9 0(s10)
-sub s9 s9 t3
-blt t3 s9 .thread3_matchfound
+ld t4 0(s10)
+sub t4 t4 t3
+blt t4 s9 .thread3_matchfound
 .thread3_loopcontinue:
 addi s10 s10 4
-li s9 1
 sub s11 s11 s9
 j .thread3_main  
 .thread3_matchfound:
