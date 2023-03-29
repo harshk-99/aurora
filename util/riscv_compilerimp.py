@@ -8,7 +8,7 @@ import sys
 import getopt
 import os
 
-#input_file = os.path.abspath("./aurora/sw/multithreaded_patterncounter_sim.s")
+#input_file = os.path.abspath("./aurora/sw/patterncounter.s")
 #output_file = os.path.abspath("./aurora/initialization/copy_lab11.txt")
 
 inst_type_dict = {
@@ -312,11 +312,17 @@ f.close()
 
 assert len(asm_instruction_history) == len(instructions), f'assembly instructions are {len(asm_instruction_history)}, binary instructions are {len(instructions)}'
 with open(elaborate_file_path, 'w', newline='') as file:
-    file.write("{0: <3} {1: <20} {2: <12} {3: <34}\n".format("PC","asm","hex","binary"))
+    file.write("{0: <3} {1: <30} {2: <20} {3: <12} {4: <34}\n".format("PC","labels","asm","hex","binary"))
     for index, elem2 in enumerate(asm_instruction_history):
         elem3 = instructions[index]
         hex_string = hex(int(elem3, 2))
         hex_string = "0x{:0>8}".format(hex_string[2:])
-        file.write("{0: <3} {1: <20} {2: <12} {3: <34}\n".format(index, elem2, hex_string, elem3))
+        if index in block_names.values():
+            label = list(block_names.keys())[list(block_names.values()).index(index)]
+            file.write("{0: <3} {1: <30} {2: <20} {3: <12} {4: <34}\n".format(index, label, elem2, hex_string, elem3))
+        else:
+            label = ""
+            file.write("{0: <3} {1: <30} {2: <20} {3: <12} {4: <34}\n".format(index, label, elem2, hex_string, elem3))
+
 
 print_all()
