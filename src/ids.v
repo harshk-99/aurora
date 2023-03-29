@@ -101,9 +101,9 @@ module ids
    localparam THREAD2_STATE            = 2'b10;
    localparam THREAD3_STATE            = 2'b11;
    localparam THREAD0_START_ADDR       = 8'd0;
-   localparam THREAD1_START_ADDR       = 8'd30;
-   localparam THREAD2_START_ADDR       = 8'd59;
-   localparam THREAD3_START_ADDR       = 8'd89;
+   localparam THREAD1_START_ADDR       = 8'd31;
+   localparam THREAD2_START_ADDR       = 8'd61;
+   localparam THREAD3_START_ADDR       = 8'd92;
     
    
    // latch 1 cycle to meet FSM next state logic

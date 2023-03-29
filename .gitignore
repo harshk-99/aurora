@@ -31,9 +31,13 @@
 ./synth/syncfifo_512x72.ngc
 ./synth/txfifo_1024x36_to_9.ngc
 ./synth/txfifo_512x72_to_9.ngc
-
+util/__pycache__/
 #ignore all .vvp files
 *.vvp
+
+# ignore all temporary xls files
+# This line tells Git to ignore any files that start with ~$ and end with .xls
+~$*.xlsx
 
 #ignore all .vcd files
 *.vcd

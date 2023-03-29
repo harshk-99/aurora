@@ -40,13 +40,15 @@ ld ra 3(sp)
 ## subtract header length from the total packet length to get the payload length
 li gp 20
 sub ra ra gp
+## load 1 in ra 
+li t1 1
+## check if packet length is greater than 20B, if yes, then continue, else jump to .thread0_exit
+blt ra zero .thread0_exit
 ## register "gp" is used by thread0 for terminating coundition akin to while(gp > 0)
 ## since we do not have a divider, we shall perform right shift arithmetic 
 ## right shift the payload length by 5=(3+2) 3 because our data path is 16 bits and data memory is 64 bits
 ## and 2 because we have 4 threads , gp is the number of location per thread, ra is payload length in bytes
 srai gp ra 5
-## load 1 in ra 
-li t1 1
 # 29033 in decimal is equivalent to 0x7169 and 0x71 is 'q' and 0x69 is 'i'
 li tp 29033 
 #offset of 6 is present in our payload, when the IP payload begins
@@ -80,6 +82,7 @@ srai ra ra 3
 sub ra ra t1
 add t0 t0 ra
 sw t2 0(t0) 
+.thread0_exit:
 ## write 1 in sp, it's a signal that thread is done working on all of it's allocated locations to it
 li sp 1
 ## process done
@@ -108,6 +111,7 @@ ld s1 3(a0)
 addi a5 s1 0
 li a1 20
 sub s1 s1 a1
+blt s1 zero .thread1_exit
 srai a1 s1 5
 li s1 1
 addi a4 a0 0
@@ -133,6 +137,7 @@ j .thread1_loopcontinue
 srai a5 a5 3
 add a4 a4 a5
 sw s0 0(a4) 
+.thread1_exit:
 li a0 1
 sw a0 1024(zero) 
 j .thread1_gobacktowait
@@ -160,6 +165,7 @@ ld a7 3(s2)
 add s7 a7 zero
 li s3 20
 sub a7 a7 s3
+blt a7 zero .thread2_exit
 srai s3 a7 5
 li a7 1
 #offset of 8 is present in our payload for the packet
@@ -185,6 +191,7 @@ srai s7 s7 3
 addi s7 s7 1
 add s6 s6 s7
 sw a6 0(s6) 
+.thread2_exit:
 li s2 1
 sw s2 1024(zero) 
 j .thread2_gobacktowait
@@ -212,6 +219,7 @@ ld s9 3(s10)
 add t6 s9 zero
 li s11 20
 sub s9 s9 s11
+blt s9 zero .thread3_exit
 srai s11 s9 5
 li s9 1
 #offset of 9 is present in our payload for the packet
@@ -237,6 +245,7 @@ srai t6 t6 3
 addi t6 t6 2
 add t5 t5 t6
 sw s8 0(t5) 
+.thread3_exit:
 li s10 1
 sw s10 1024(zero) 
 j .thread3_gobacktowait
