@@ -5,7 +5,7 @@ module IDEX
        input                                 WMemEn_in, 
        //input                 RMemEn_in, 
        //input                 imm_in, 
-       input 				     rs2_swch_in,
+       input 				     alu_src_in,
        input                                 mem_to_reg_in, 
        //input                 load_in, 
        //input                 store_in, 
@@ -23,7 +23,7 @@ module IDEX
       
        output reg                            WRegEn_out, 
        output reg                            WMemEn_out, 
-            output reg			     rs2_swch_out,
+            output reg			     alu_src_out,
        //output reg            RMemEn_out, 
        output reg                            mem_to_reg_out,
        //output reg            imm_out, 
@@ -46,7 +46,7 @@ module IDEX
            WRegEn_out       <= 1'b0;
            WMemEn_out       <= 1'b0;
            //RMemEn_out       <= 1'b0;
-           rs2_swch_out 	 <= 1'b0;
+           alu_src_out 	 <= 1'b0;
                      mem_to_reg_out   <= 1'b0;
            //imm_out          <= 1'b0;
            //load_out         <= 1'b0;
@@ -66,7 +66,7 @@ module IDEX
            WMemEn_out       <= WMemEn_in;
            //RMemEn_out       <= RMemEn_in;
            mem_to_reg_out   <= mem_to_reg_in;
-           rs2_swch_out 	 <= rs2_swch_in;
+           alu_src_out 	 <= alu_src_in;
            //imm_out          <= imm_in;
            //load_out         <= load_in;
            //store_out        <= store_in;
