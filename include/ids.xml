@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nf:module xmlns:nf="http://www.NetFPGA.org/NF2_register_system" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.NetFPGA.org/NF2_register_system NF2_register_system.xsd ">
+	<nf:name>ids</nf:name>
+	<nf:prefix>ids</nf:prefix>
+	<nf:location>udp</nf:location>
+	<nf:description>Registers for IDS</nf:description>
+	<nf:blocksize>64</nf:blocksize>
+	<nf:registers>
+		<nf:register>
+		  <nf:name>pattern_high</nf:name>
+			<nf:description>Upper 32 bits of Pattern</nf:description>
+			<nf:type>generic_software32</nf:type>
+		</nf:register>
+		<nf:register>
+		  <nf:name>pattern_low</nf:name>
+			<nf:description>Lower 32 bits of Pattern</nf:description>
+			<nf:type>generic_software32</nf:type>
+		</nf:register>
+		<nf:register>
+		  <nf:name>ids_cmd</nf:name>
+			<nf:description>Command Register</nf:description>
+			<nf:type>generic_software32</nf:type>
+		</nf:register>
+        	<nf:register>
+		  <nf:name>matches</nf:name>
+			<nf:description>Match Count Register</nf:description>
+			<nf:type>generic_hardware32</nf:type>
+		</nf:register>
+	</nf:registers>
+</nf:module>
+
