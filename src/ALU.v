@@ -9,32 +9,32 @@
 //  in_funct7       in_funct3       ALU Instruction   Status         Brief Description
 //  0000000             000         ADD               implemented   
 //  0100000             000         SUB               implemented    SUB performs the subtraction of rs2 from rs1.
-//  0000000             001         SLL                 
+//  0000000             001         SLL               implemented                
 //  0000000             010         SLT                              SLT and SLTU perform signed and unsigned
 //  0000000             011         SLTU                             compares respectively, writing 1 to rd if rs1 < rs2, 0 otherwise.
 //  0000000             100         XOR
 //  0000000             101         SRL
 //  0100000             101         SRA               implemented
 //  0000000             110         OR                implemented
-//  0000000             111         AND             
+//  0000000             111         AND               implemented             
 //-------------------------------------------------------------------------------
 
 // 1-bit ALU building block alu_1_bit
 `timescale 1 ns / 100 ps
 
-module alu_16_bit
-    #( parameter PROC_DATA_WIDTH=16)
+module ALU
+    #( parameter PROC_DATA_WIDTH=64)
     (
-        input   [PROC_DATA_WIDTH-1:0]       in_rs1,
-        input   [PROC_DATA_WIDTH-1:0]       in_rs2, 
-        input   [2:0]                  in_funct3,
-        input                  	       in_funct7,
-        output  reg [PROC_DATA_WIDTH-1:0]   out_rd
+        input   [PROC_DATA_WIDTH-1:0]     in_rs1,
+        input   [PROC_DATA_WIDTH-1:0]     in_rs2, 
+        input   [2:0]                     in_funct3,
+        input                  	          in_funct7,
+        output reg [PROC_DATA_WIDTH-1:0]  out_rd
     );
 
    // local variables
-   wire [3:0]                          funct7_and_3;
-   wire signed [PROC_DATA_WIDTH-1:0]        signed_in_rs1;
+   wire [3:0]                             funct7_and_3;
+   wire signed [PROC_DATA_WIDTH-1:0]      signed_in_rs1;
 
    // continuous assignments
    assign funct7_and_3 = {in_funct7,in_funct3};
@@ -47,9 +47,17 @@ module alu_16_bit
 	     begin
 	       out_rd = in_rs1+in_rs2; 
              end
+          4'b0001:      // SLL
+	     begin
+	       out_rd = in_rs1 << in_rs2; 
+	     end
           4'b0110:      // OR
 	     begin
 	       out_rd = in_rs1 | in_rs2; 
+	     end
+          4'b0111:      // AND
+	     begin
+	       out_rd = in_rs1 & in_rs2; 
 	     end
 	  4'b1000:      // Subtraction
 	     begin
