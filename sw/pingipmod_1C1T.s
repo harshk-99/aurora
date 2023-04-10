@@ -14,7 +14,6 @@
 # s0 - mask for 0xFFFF
 # t1 - stores '1'
 # sp - readpointer
-# tp - stores with 2 to check if after applying mask, the value is less than 2 for detecting ICMP
 # gp - decimal 515 is 0x0203 the 16-bit LSBs of Port 2 
 # ra - generally stores the value loaded from memory
 # s1 - stores duplicate destination ip address copy
@@ -30,6 +29,7 @@ addi zero zero 0
 addi zero zero 0
 addi zero zero 0
 blt ra sp .thread0_gobacktowait
+.ICMP_check:
 ## load the readpointer from location 0x200
 ld sp 512(zero)
 addi zero zero 0
@@ -49,7 +49,7 @@ andi ra ra 255
 addi zero zero 0
 addi zero zero 0
 addi zero zero 0
-blt ra tp .ICMP_found 
+beq ra t1 .destip_check 
 .communicate_jobcomplete:
 li sp 1
 addi zero zero 0
@@ -61,7 +61,7 @@ addi zero zero 0
 addi zero zero 0
 addi zero zero 0 
 j .thread0_gobacktowait
-.ICMP_found:
+.destip_check:
 ## add 2 to current location to fetch lower 16 bits of destination ip address
 addi sp sp 2
 addi zero zero 0
@@ -71,15 +71,10 @@ ld ra 0(sp)
 addi zero zero 0
 addi zero zero 0
 addi zero zero 0
+# store a copy in s1
 add s1 ra zero
-addi zero zero 0
-addi zero zero 0
-addi zero zero 0
 # shift the number to the right by 48 bits
 srai ra ra 48
-addi zero zero 0
-addi zero zero 0
-addi zero zero 0
 # prepare the mask of the value 65535
 addi fp t1 0
 addi zero zero 0
@@ -98,24 +93,47 @@ and ra ra fp
 addi zero zero 0
 addi zero zero 0
 addi zero zero 0
-# subtract 0x0203 from ra
-sub ra ra gp
-addi zero zero 0
-addi zero zero 0
-addi zero zero 0
-## if result is less then 1 then destipmatch found
-blt ra t1 .destipmatch
+beq ra gp .destipmatch
 addi zero zero 0
 addi zero zero 0
 addi zero zero 0
 j .communicate_jobcomplete
 .destipmatch:
+## go back one position to change the checksum of IP, 
+## we have AND the number fetched with the mask of 0x0000_FFFF_FFFF_FFFF
+sub sp sp t1
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+ld ra 0(sp)
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+# prepare the mask of the value 0x0000_FFFF_FFFF_FFFF
+addi fp t1 0
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+slli fp fp 48
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+addi fp fp -1
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+and ra ra fp
+addi zero zero 0
+addi zero zero 0
+addi zero zero 0
+sw ra 0(sp)
+add sp sp t1
 # store t0 with 0x01_00_00_00_00_00_00_00, essentially we are storing 1 into 56th bit (beginning from 0th bit)
-li t0 2048
+li t0 1024
 addi zero zero 0
 addi zero zero 0
 addi zero zero 0 
-slli t0 t0 45 
+slli t0 t0 46 
 addi zero zero 0
 addi zero zero 0
 addi zero zero 0 

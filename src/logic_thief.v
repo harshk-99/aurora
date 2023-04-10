@@ -26,6 +26,7 @@ module logic_thief
   // 3 - STATE (2 bits) + write enable
   // 3 + 8 + 16 + 2*72 = 171
   localparam REAL_LOGTHIEF_DATA_WIDTH = 3 + INSTMEM_LOG2_DEEP + 2*(BMEM_LOG2_DEEP) + 2*(CTRL_WIDTH + DATA_WIDTH);
+  localparam STATUS_BITS = LOGTHIEF_DATA_WIDTH - REAL_LOGTHIEF_DATA_WIDTH;
   wire [REAL_LOGTHIEF_DATA_WIDTH-1:0]  dout_w;
   reg  [LOGTHIEF_LOG2_DEEP-1:0]        count_r;
   reg  [7:0]                           beginrecording;
@@ -57,7 +58,7 @@ module logic_thief
   always @(posedge clk_i) begin
       if (cmd_i == 32'hDEADDEAD) begin
          count_r <= 0;
-         data_o[LOGTHIEF_DATA_WIDTH-1:REAL_LOGTHIEF_DATA_WIDTH] <= ({LOGTHIEF_DATA_WIDTH-REAL_LOGTHIEF_DATA_WIDTH{1'b0}});
+         data_o[LOGTHIEF_DATA_WIDTH-1:REAL_LOGTHIEF_DATA_WIDTH] <= ({STATUS_BITS{1'b0}});
          beginrecording <= 8'h00;
 	 private_wen <= 1'b0;
       end
@@ -70,7 +71,7 @@ module logic_thief
          end
       end
       if (count_r == 255) begin
-         data_o[LOGTHIEF_DATA_WIDTH-1:REAL_LOGTHIEF_DATA_WIDTH] <= ({LOGTHIEF_DATA_WIDTH-REAL_LOGTHIEF_DATA_WIDTH{1'b1}});
+         data_o[LOGTHIEF_DATA_WIDTH-1:REAL_LOGTHIEF_DATA_WIDTH] <= ({STATUS_BITS{1'b1}});
          private_wen <= 1'b0;
       end
   end

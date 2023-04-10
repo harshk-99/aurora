@@ -23,7 +23,8 @@
 `timescale 1 ns / 100 ps
 
 module ALU
-    #( parameter PROC_DATA_WIDTH=64)
+    #( parameter PROC_DATA_WIDTH=64, 
+       parameter SHAMT_WIDTH=6)
     (
         input   [PROC_DATA_WIDTH-1:0]     in_rs1,
         input   [PROC_DATA_WIDTH-1:0]     in_rs2, 
@@ -49,7 +50,7 @@ module ALU
              end
           4'b0001:      // SLL
 	     begin
-	       out_rd = in_rs1 << in_rs2; 
+	       out_rd = in_rs1 << in_rs2[SHAMT_WIDTH-1:0]; 
 	     end
           4'b0110:      // OR
 	     begin
@@ -66,7 +67,7 @@ module ALU
 	  4'b1101:      // SRA
 	     begin
                // This number 3:0 should be changed if we increase the PROC_DATA_WIDTH
-	       out_rd = in_rs1 >>> in_rs2[3:0]; 
+	       out_rd = signed_in_rs1 >>> in_rs2[SHAMT_WIDTH-1:0]; 
 	     end
 	  default:    
              begin
