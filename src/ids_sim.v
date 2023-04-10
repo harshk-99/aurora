@@ -61,7 +61,8 @@ module ids_sim
    parameter PROC_REGFILE_LOG2_DEEP       = 5;                             
    parameter NUM_REGISTERS                = 2**PROC_REGFILE_LOG2_DEEP;                                                        
    parameter BMEM_LOG2_DEEP               = 8;
-   parameter INSTMEM_LOG2_DEEP            = 8;                                                         
+   parameter INSTMEM_LOG2_DEEP            = 8;
+   parameter SHAMT_WIDTH                     = 6;     // if PROC_DATA_WIDTH=64, this parameter shall be 6
    localparam BMEM_DATA_WIDTH             = CTRL_WIDTH+DATA_WIDTH; 
    localparam STATEMACHINE_STATUS_ADDR_BIT = 8;
    localparam READPTR_ADDR_BIT            = 9;                                                             
@@ -148,7 +149,7 @@ module ids_sim
    wire                                cpu_job_complete_w;
    wire [INSTMEM_LOG2_DEEP-1:0]        mem_pc_carry_baggage_w;
    wire [CTRL_WIDTH-1:0]     			augment_proc_writedata_w;
-   reg [CTRL_WIDTH+DATA_WIDTH-1:0]     sync_data_r;
+   //reg [CTRL_WIDTH+DATA_WIDTH-1:0]     sync_data_r;
  
    //------------------------- Modules-------------------------------
 
@@ -181,7 +182,8 @@ module ids_sim
       .READPTR_ADDR_BIT                   (READPTR_ADDR_BIT),
       .CPU_JOB_STATUS_ADDR_BIT            (CPU_JOB_STATUS_ADDR_BIT),
       .THREAD0_START_ADDR                 (THREAD0_START_ADDR),
-      .THREAD0_UPSTREAM_STATUS_BIT_POS    (THREAD0_UPSTREAM_STATUS_BIT_POS)
+      .THREAD0_UPSTREAM_STATUS_BIT_POS    (THREAD0_UPSTREAM_STATUS_BIT_POS),
+      .SHAMT_WIDTH                        (SHAMT_WIDTH)						   
    ) sc0 (
       .reset                      (reset),
       .mem_mem_write_en_out       (mem_mem_write_en_w),
@@ -190,7 +192,7 @@ module ids_sim
       .bmem_dout_in               (bmem_dout_w[PROC_DATA_INTERFACE_HIGHBIT:PROC_DATA_INTERFACE_LOWBIT]),
       .state_status_in            (state),
       .bmemreadptr_in             (bmemasfifo_readptr_r),
-	  .mem_pc_carry_baggage_w     (mem_pc_carry_baggage_w),												
+	  .mem_pc_carry_baggage_w     (mem_pc_carry_baggage_w),
       .clk                        (clk)
    );
 
@@ -382,8 +384,8 @@ module ids_sim
        if (reset) begin
           //din_bmem_r          <= 'b0;
           //fifowrite_bmem_r    <= 'b0;
-          bmemasfifo_writeptr_r     <= 'b0;
-          bmemasfifo_readptr_r      <= 'b0;
+          bmemasfifo_writeptr_r     <= {BMEM_LOG2_DEEP{1'b0}};
+          bmemasfifo_readptr_r      <= {BMEM_LOG2_DEEP{1'b0}};
           out_wr_r            <= 'b0;
        end
        else begin

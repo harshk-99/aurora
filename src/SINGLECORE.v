@@ -29,7 +29,8 @@ module SINGLECORE
       parameter READPTR_ADDR_BIT             = 9,
       parameter CPU_JOB_STATUS_ADDR_BIT      = 10,
       parameter THREAD0_START_ADDR           = 0,
-      parameter THREAD0_UPSTREAM_STATUS_BIT_POS = 0
+      parameter THREAD0_UPSTREAM_STATUS_BIT_POS = 0,
+      parameter SHAMT_WIDTH                  = 6
     )
     (
       input                               reset,
@@ -57,6 +58,7 @@ module SINGLECORE
    localparam THREAD1_STATE            = 2'b01;
    localparam THREAD2_STATE            = 2'b10;
    localparam THREAD3_STATE            = 2'b11;
+   localparam SIGNEXT_BITS             = PROC_DATA_WIDTH-12;
    //localparam THREAD1_START_ADDR       = 8'd31;
    //localparam THREAD2_START_ADDR       = 8'd61;
    //localparam THREAD3_START_ADDR       = 8'd92;
@@ -213,11 +215,11 @@ module SINGLECORE
    //assign control_inst_target_address_w= adder1_w + sign_extender_selecter_w;
    assign control_inst_target_address_w = id_pc_carry_baggage_w + sign_extender_selecter_w;
  
-   br_alu #(.PROC_DATA_WIDTH(PROC_DATA_WIDTH)) 
+   BR_ALU #(.PROC_DATA_WIDTH(PROC_DATA_WIDTH)) 
      bru0 (
        .in_rs1             (reg_read_data1_w),
        .in_rs2             (reg_read_data2_w),
-       //.in_funct3          (func3_intm_w),
+       .in_funct3          (func3_intm_w),
        .out_branch         (branch_alu_w)
      );
    assign true_branch_w= branch_alu_w & cu_branch_out_w;
@@ -257,7 +259,8 @@ module SINGLECORE
 
     //assign sign_ext_w = (load_w == 1'b1 || immd_w == 1'b1) ? {{52{instr_w[31]}}, instr_w[31:20]} : {{52{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
     // sign_ext_w selects between I-type instruction or S-type instruction
-    assign sign_ext_w = (immd_w == 1'b1) ? {{4{instr_w[31]}}, instr_w[31:20]} : {{4{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
+    //assign sign_ext_w = (immd_w == 1'b1) ? {{4{instr_w[31]}}, instr_w[31:20]} : {{4{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
+    assign sign_ext_w = (immd_w == 1'b1) ? {{SIGNEXT_BITS{instr_w[31]}}, instr_w[31:20]} : {{SIGNEXT_BITS{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
     assign func3_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[14:12] : 3'b000;
     assign func7_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[30] : 1'b0		;
     // control instructions mux logic for ID stage
@@ -312,7 +315,8 @@ module SINGLECORE
     //assign data2_w = (ex_load_w == 1'b0 && ex_store_w == 1'b0 && ex_immd_w == 1'b0) ? ex_r2_out_w : ex_sign_ext_w;
     //assign ex_data2_j= (ex_jal_w || ex_hz_jalr_w) ? 64'h0000000000000000 : data2_w;
 
-    ALU #(.PROC_DATA_WIDTH(PROC_DATA_WIDTH)) 
+    ALU #(.PROC_DATA_WIDTH(PROC_DATA_WIDTH),
+          .SHAMT_WIDTH(SHAMT_WIDTH)) 
       alu0 
          (
          .in_rs1     (ex_r1_out_w),
