@@ -4,32 +4,30 @@ Xilinx Mapping Report File for Design 'nf2_top'
 Design Information
 ------------------
 Command Line   : map -intstyle ise -timing -xe n -detail -ol high -cm speed
--register_duplication -ignore_keep_hierarchy -pr b -k 4 -c 100 -tx off
-nf2_top.ngd 
+-register_duplication -smartguide smartguide.ncd -ignore_keep_hierarchy -pr b -k
+4 -c 100 -tx off nf2_top.ngd 
 Target Device  : xc2vp50
 Target Package : ff1152
 Target Speed   : -7
 Mapper Version : virtex2p -- $Revision: 1.46.12.2 $
-Mapped Date    : Sun Mar 26 19:33:01 2023
+Mapped Date    : Sun Apr  9 14:21:21 2023
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings: 2476
+Number of warnings: 2554
 Logic Utilization:
-  Total Number Slice Registers:      14,837 out of  47,232   31%
-    Number used as Flip Flops:       14,836
-    Number used as Latches:               1
-  Number of 4 input LUTs:            22,933 out of  47,232   48%
+  Number of Slice Flip Flops:        14,820 out of  47,232   31%
+  Number of 4 input LUTs:            23,805 out of  47,232   50%
 Logic Distribution:
-  Number of occupied Slices:         16,331 out of  23,616   69%
-    Number of Slices containing only related logic:  16,331 out of  16,331 100%
-    Number of Slices containing unrelated logic:          0 out of  16,331   0%
+  Number of occupied Slices:         15,895 out of  23,616   67%
+    Number of Slices containing only related logic:  15,895 out of  15,895 100%
+    Number of Slices containing unrelated logic:          0 out of  15,895   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:      24,176 out of  47,232   51%
-    Number used as logic:            19,481
-    Number used as a route-thru:      1,243
-    Number used for Dual Port RAMs:   2,332
+  Total Number of 4 input LUTs:      25,042 out of  47,232   53%
+    Number used as logic:            20,209
+    Number used as a route-thru:      1,237
+    Number used for Dual Port RAMs:   2,476
       (Two LUTs used per Dual Port RAM)
     Number used for 32x1 RAMs:          384
       (Two LUTs used per 32x1 RAM)
@@ -37,13 +35,13 @@ Logic Distribution:
     Number used as Shift registers:     576
   Number of bonded IOBs:                356 out of     692   51%
     IOB Flip Flops:                     651
-  Number of RAMB16s:                    111 out of     232   47%
+  Number of RAMB16s:                    114 out of     232   49%
   Number of BUFGMUXs:                     8 out of      16   50%
   Number of DCMs:                         6 out of       8   75%
 
-Peak Memory Usage:  1811 MB
-Total REAL time to MAP completion:  14 mins 11 secs 
-Total CPU time to MAP completion:   14 mins 10 secs 
+Peak Memory Usage:  1900 MB
+Total REAL time to MAP completion:  47 secs 
+Total CPU time to MAP completion:   47 secs 
 
 Table of Contents
 -----------------
@@ -2655,268 +2653,420 @@ WARNING:LIT:243 - Logical network
 WARNING:LIT:243 - Logical network
    nf2_core/user_data_path/input_arbiter/in_arb_queues[0].in_arb_fifo/Mram_queue
    72/SPO has no load.
+WARNING:LIT:243 - Logical network nf2_core/user_data_path/ids/input_fifo/full
+   has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/ex_reg_write_addr_w(4) has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue1/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/mem_reg_write_addr_w(4) has no load.
-WARNING:LIT:243 - Logical network nf2_core/user_data_path/ids/im0/dout<19> has
-   no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue2/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file1/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue3/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file2/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue6/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file3/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue4/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file4/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue5/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file5/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue7/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file6/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue8/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file7/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue11/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file8/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue9/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file9/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue10/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file10/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue12/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file11/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue13/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file12/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue16/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file13/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue14/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file14/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue15/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file15/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue17/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file16/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue18/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file17/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue21/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file18/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue19/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file19/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue20/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file20/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue22/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file21/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue23/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file22/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue26/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file23/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue24/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file24/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue25/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file25/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue27/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file26/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue28/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file27/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue31/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file28/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue29/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file29/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue30/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file32/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue32/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file30/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue33/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file31/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue36/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file33/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue34/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file34/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue35/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file35/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue37/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file36/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue38/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file37/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue41/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file38/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue39/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file39/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue40/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file40/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue42/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file41/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue43/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file42/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue46/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file43/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue44/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file44/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue45/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file45/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue47/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file46/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue48/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file47/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue51/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file48/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue49/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file49/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue50/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file50/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue52/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file51/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue53/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file52/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue56/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file53/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue54/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file54/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue55/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file55/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue57/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file56/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue58/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file57/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue61/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file58/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue59/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file59/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue60/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file60/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue62/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file61/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue63/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file62/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue66/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren1/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue64/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file63/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue65/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file64/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue67/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren2/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue68/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren3/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue69/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren4/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue70/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren5/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue71/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren6/SPO has no load.
+   nf2_core/user_data_path/ids/input_fifo/fifo/Mram_queue72/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren7/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/ex_thread_id_w(0) has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren8/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/ex_thread_id_w(1) has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren9/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/id_thread_id_w(0) has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren10/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/id_thread_id_w(1) has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren11/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/mem_reg_write_addr_w(4) has no load.
+WARNING:LIT:243 - Logical network nf2_core/user_data_path/ids/sc0/im0/dout<19>
+   has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren12/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file1/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren13/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file2/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren14/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file3/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren15/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file4/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren16/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file5/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren17/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file6/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren18/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file7/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren19/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file8/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren20/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file9/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren21/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file10/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren22/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file11/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren23/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file12/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren24/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file13/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren25/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file14/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren26/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file15/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren27/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file16/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren28/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file17/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren29/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file18/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren30/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file19/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren31/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file20/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren34/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file21/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren32/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file22/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren33/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file23/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren35/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file24/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren36/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file25/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren37/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file26/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren38/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file27/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren39/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file28/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren40/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file29/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren41/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file32/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren42/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file30/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren43/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file31/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren44/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file33/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren45/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file34/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren46/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file35/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren47/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file36/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren48/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file37/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren49/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file38/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren50/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file39/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren51/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file40/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren52/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file41/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren53/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file42/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren54/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file43/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren55/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file44/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren56/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file45/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren57/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file46/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren58/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file47/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren59/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file48/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren60/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file49/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren61/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file50/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren62/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file51/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren63/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file52/SPO has no load.
 WARNING:LIT:243 - Logical network
-   nf2_core/user_data_path/ids/rf0/Mram_reg_file_ren64/SPO has no load.
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file53/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file54/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file55/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file56/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file57/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file58/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file59/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file60/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file61/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file62/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren1/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file63/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file64/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren2/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren3/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren4/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren5/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren6/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren7/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren8/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren9/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren10/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren11/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren12/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren13/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren14/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren15/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren16/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren17/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren18/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren19/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren20/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren21/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren22/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren23/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren24/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren25/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren26/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren27/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren28/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren29/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren30/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren31/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren34/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren32/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren33/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren35/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren36/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren37/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren38/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren39/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren40/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren41/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren42/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren43/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren44/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren45/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren46/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren47/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren48/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren49/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren50/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren51/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren52/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren53/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren54/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren55/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren56/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren57/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren58/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren59/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren60/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren61/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren62/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren63/SPO has no load.
+WARNING:LIT:243 - Logical network
+   nf2_core/user_data_path/ids/sc0/rf0/Mram_reg_file_ren64/SPO has no load.
 WARNING:LIT:243 - Logical network
    nf2_core/user_data_path/output_port_lookup/is_arp_pkt has no load.
 WARNING:LIT:243 - Logical network
@@ -5653,177 +5803,432 @@ WARNING:Pack:504 - The I/O component rgmii_3_tx_ctl has conflicting SLEW
    property values.  The symbol rgmii_3_tx_ctl has property value FAST.  The
    symbol rgmii_3_io/drive_rgmii_tx_ctl has property value SLOW.  The system
    will use the property value attached to symbol rgmii_3_tx_ctl.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   nf2_core/user_data_path/ids/begin_pkt_next_or0000 is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
+WARNING:Pack:266 - The function generator reset1_8 failed to merge with F5
+   multiplexer nf2_core/nf2_dma/nf2_dma_regs/state_nxt_f5.  There is a conflict
+   for the FXMUX.  The design will exhibit suboptimal timing.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(34)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file35/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(37)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren38/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(42)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file43/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(45)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren46/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(59)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren60/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(53)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren54/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(43)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file44/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(21)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren22/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(60)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren61/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(29)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren30/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(44)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file45/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(37)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file38/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(45)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file46/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(31)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file32/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(46)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file47/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(13)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file14/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(47)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file48/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(21)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file22/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(55)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file56/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(5)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file6/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(48)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file49/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(38)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren39/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(56)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file57/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(46)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren47/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(1)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren2/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(54)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren55/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(57)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file58/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(22)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren23/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(49)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file50/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(30)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren31/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(2)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren3/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(38)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file39/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(58)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file59/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(14)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file15/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(50)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file51/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(22)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file23/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(11)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren12/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(29)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file30/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(3)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren4/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(6)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file7/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(51)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file52/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(47)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren48/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(59)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file60/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(55)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren56/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(12)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren13/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(63)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren64/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(4)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren5/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(33)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren34/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(52)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file53/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(39)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren40/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(60)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file61/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(15)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file16/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(13)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren14/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(23)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file24/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(21)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren22/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(39)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file40/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(5)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren6/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(30)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file31/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(53)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file54/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(48)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren49/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(61)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file62/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(56)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren57/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(5)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file6/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(40)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren41/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(14)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren15/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(31)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren32/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(22)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren23/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(16)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file17/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(6)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren7/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(24)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file25/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(32)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file33/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(40)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file41/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(57)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren58/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(41)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren42/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(49)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren50/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(25)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file26/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(33)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file34/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(41)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file42/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(58)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren59/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(42)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren43/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(50)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren51/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(26)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file27/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(34)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file35/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(42)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file43/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(51)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren52/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(59)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren60/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(35)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file36/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(43)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file44/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(52)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren53/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(60)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren61/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(36)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file37/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(44)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file45/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(61)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren62/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(45)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file46/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(62)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren63/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(46)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file47/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(47)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file48/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(48)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file49/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(57)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file58/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(49)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file50/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(58)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file59/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(50)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file51/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(51)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file52/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(59)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file60/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(3)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren4/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(52)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file53/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(60)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file61/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(4)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren5/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(13)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren14/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(53)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file54/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(61)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file62/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(5)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren6/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(14)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren15/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(54)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file55/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(6)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren7/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(0)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren1/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(15)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren16/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(23)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren24/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(55)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file56/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(62)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file63/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(7)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file8/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(7)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren8/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(16)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren17/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(24)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren25/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(56)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file57/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(63)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file64/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(8)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file9/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(0)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file1/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(8)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren9/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(17)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren18/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(25)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren26/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(32)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren33/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(9)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren10/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(17)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file18/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[0].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[0].ram.r/v2.ram/dp18x36.ram.A>:<RAMB16_RAMB16A>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(0)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren1/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(9)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file10/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[1].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[0].ram.r/v2.ram/dp18x36.ram.A>:<RAMB16_RAMB16A>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(54)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file55/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(1)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file2/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[2].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[0].ram.r/v2.ram/dp18x36.ram.A>:<RAMB16_RAMB16A>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(6)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file7/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(1)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren2/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[3].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
@@ -5850,44 +6255,48 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    /ramloop[0].ram.r/v2.ram/dp36x18.ram.B>:<RAMB16_RAMB16B>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(33)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren34/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(18)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren19/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(15)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren16/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(26)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren27/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpci_bus/pci2net_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.
    bmg/blk_mem_generator/valid.cstr/ramloop[0].ram.r/v2.ram/dp36x36.ram.A>:<RAMB
    16_RAMB16A>.  The block is configured to use input parity pins. There are
    dangling output parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(23)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren24/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(34)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren35/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(7)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren8/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(10)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren11/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(62)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file63/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(18)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file19/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(15)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file16/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(10)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file11/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(7)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file8/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(2)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file3/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[7].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
    rator/valid.cstr/ramloop[0].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(2)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file_ren3/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[6].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
@@ -5912,30 +6321,18 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    rator/valid.cstr/ramloop[0].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(16)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren17/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[2].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
    rator/valid.cstr/ramloop[0].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(24)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren25/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[1].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
    rator/valid.cstr/ramloop[0].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(31)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren32/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[0].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
@@ -5943,31 +6340,29 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    The block is configured to use input parity pins. There are dangling output
    parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(8)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren9/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:1060 - Dangling pins on
-   block:<nf2_core/user_data_path/ids/dm0/B6.A>:<RAMB16_RAMB16A>.  The block is
-   configured to use input parity pins. There are dangling output parity pins.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(27)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren28/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(63)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file64/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(35)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren36/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(16)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file17/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(43)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren44/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(8)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file9/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(11)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren12/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(0)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file1/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:1060 - Dangling pins on
-   block:<nf2_core/user_data_path/ids/dm0/B10.A>:<RAMB16_RAMB16A>.  The block is
-   configured to use input parity pins. There are dangling output parity pins.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(19)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren20/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(27)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file28/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:812 - Dangling pin <DOA19> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/num_wor
    ds_in_q_reg/ram/Mram_ram.A>:<RAMB16_RAMB16A>.
@@ -6046,51 +6441,43 @@ WARNING:PhysDesignRules:812 - Dangling pin <DOB30> on
 WARNING:PhysDesignRules:812 - Dangling pin <DOB31> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/num_wor
    ds_in_q_reg/ram/Mram_ram.B>:<RAMB16_RAMB16B>.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(11)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file12/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[0].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[1].ram.r/v2.ram/dp18x36.ram.A>:<RAMB16_RAMB16A>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(17)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren18/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(19)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file20/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[1].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[1].ram.r/v2.ram/dp18x36.ram.A>:<RAMB16_RAMB16A>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(25)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren26/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(3)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file4/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[2].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[1].ram.r/v2.ram/dp18x36.ram.A>:<RAMB16_RAMB16A>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(41)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren42/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[3].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[1].ram.r/v2.ram/dp18x36.ram.A>:<RAMB16_RAMB16A>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(32)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren33/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[0].cpu_dma_queue_i/cpu_dma_tx_queue/cpu_fifos64.tx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[1].ram.r/v2.ram/dp36x18.ram.B>:<RAMB16_RAMB16B>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(9)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file_ren10/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[1].cpu_dma_queue_i/cpu_dma_tx_queue/cpu_fifos64.tx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
@@ -6101,23 +6488,11 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[1].ram.r/v2.ram/dp36x18.ram.B>:<RAMB16_RAMB16B>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(17)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file18/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/cpu_queues[3].cpu_dma_queue_i/cpu_dma_tx_queue/cpu_fifos64.tx
    _fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_generator/valid.cstr
    /ramloop[1].ram.r/v2.ram/dp36x18.ram.B>:<RAMB16_RAMB16B>.  The block is
    configured to use input parity pins. There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(25)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file26/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(9)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file10/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[7].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
@@ -6125,39 +6500,59 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    The block is configured to use input parity pins. There are dangling output
    parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(1)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file2/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(28)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren29/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[6].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
    rator/valid.cstr/ramloop[1].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(36)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren37/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[5].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
    rator/valid.cstr/ramloop[1].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(44)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren45/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[4].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
    rator/valid.cstr/ramloop[1].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(12)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren13/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[3].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
    rator/valid.cstr/ramloop[1].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0001(20)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file_ren21/DP.F> is incomplete. The signal does not
+   drive any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[2].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
    rator/valid.cstr/ramloop[1].ram.r/v2.ram/dp36x36.ram.A>:<RAMB16_RAMB16A>. 
    The block is configured to use input parity pins. There are dangling output
    parity pins.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(28)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file29/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[1].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
@@ -6165,9 +6560,9 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    The block is configured to use input parity pins. There are dangling output
    parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(18)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren19/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(12)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file13/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/remove_pkt/output_fifo64.output_
    fifos[0].gmac_tx_fifo/BU2/U0/grf.rf/mem/gbm.gbmg.gbmga.ngecc.bmg/blk_mem_gene
@@ -6175,9 +6570,17 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    The block is configured to use input parity pins. There are dangling output
    parity pins.
 WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(26)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren27/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(20)/nf2_core/user_data_pat
+   h/ids/sc0/rf0/Mram_reg_file21/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:1060 - Dangling pins on
+   block:<nf2_core/user_data_path/ids/XLXI_14/B6.A>:<RAMB16_RAMB16A>.  The block
+   is configured to use input parity pins. There are dangling output parity
+   pins.
+WARNING:PhysDesignRules:367 - The signal
+   <nf2_core/user_data_path/ids/sc0/rf0/_varindex0000(4)/nf2_core/user_data_path
+   /ids/sc0/rf0/Mram_reg_file5/DP.F> is incomplete. The signal does not drive
+   any load pins in the design.
 WARNING:PhysDesignRules:812 - Dangling pin <DOA19> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/oq_addr
    _lo_reg/ram/Mram_ram.A>:<RAMB16_RAMB16A>.
@@ -6256,18 +6659,6 @@ WARNING:PhysDesignRules:812 - Dangling pin <DOB30> on
 WARNING:PhysDesignRules:812 - Dangling pin <DOB31> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/oq_addr
    _lo_reg/ram/Mram_ram.B>:<RAMB16_RAMB16B>.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(34)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren35/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(42)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren43/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(10)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren11/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:812 - Dangling pin <DOA19> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/oq_rd_a
    ddr_reg/ram/Mram_ram.A>:<RAMB16_RAMB16A>.
@@ -6307,22 +6698,10 @@ WARNING:PhysDesignRules:812 - Dangling pin <DOA30> on
 WARNING:PhysDesignRules:812 - Dangling pin <DOA31> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/oq_rd_a
    ddr_reg/ram/Mram_ram.A>:<RAMB16_RAMB16A>.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(18)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file19/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(26)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file27/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(10)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file11/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(2)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file3/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+WARNING:PhysDesignRules:1060 - Dangling pins on
+   block:<nf2_core/user_data_path/ids/XLXI_14/B10.A>:<RAMB16_RAMB16A>.  The
+   block is configured to use input parity pins. There are dangling output
+   parity pins.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_port_lookup/ip_arp/cam_lut_sm/Mram_lut1
    .A>:<RAMB16_RAMB16A>.  The block is configured to use input parity pins.
@@ -6335,62 +6714,22 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/ids/lt0/bram/B6.A>:<RAMB16_RAMB16A>.  The
    block is configured to use input parity pins. There are dangling output
    parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(27)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren28/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_port_lookup/input_fifo/fifo/Mram_queue1
    .A>:<RAMB16_RAMB16A>.  The block is configured to use input parity pins.
    There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(35)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren36/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_port_lookup/input_fifo/fifo/Mram_queue2
    .A>:<RAMB16_RAMB16A>.  The block is configured to use input parity pins.
    There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(43)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren44/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm/Mram_lut1
    .A>:<RAMB16_RAMB16A>.  The block is configured to use input parity pins.
    There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(51)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren52/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm/Mram_lut2
    .A>:<RAMB16_RAMB16A>.  The block is configured to use input parity pins.
    There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(19)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren20/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(27)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file28/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(35)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file36/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(11)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file12/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(19)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file20/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(3)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file4/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
 WARNING:PhysDesignRules:812 - Dangling pin <DOA19> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/num_wor
    ds_left_reg/ram/Mram_ram.A>:<RAMB16_RAMB16A>.
@@ -6469,26 +6808,6 @@ WARNING:PhysDesignRules:812 - Dangling pin <DOB30> on
 WARNING:PhysDesignRules:812 - Dangling pin <DOB31> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/num_wor
    ds_left_reg/ram/Mram_ram.B>:<RAMB16_RAMB16B>.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(28)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren29/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(36)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren37/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(44)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren45/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(52)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren53/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(20)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren21/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_queues/input_fifo/fifo/Mram_queue1.A>:<
    RAMB16_RAMB16A>.  The block is configured to use input parity pins. There are
@@ -6536,26 +6855,6 @@ WARNING:PhysDesignRules:812 - Dangling pin <DOA30> on
 WARNING:PhysDesignRules:812 - Dangling pin <DOA31> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/oq_wr_a
    ddr_reg/ram/Mram_ram.A>:<RAMB16_RAMB16A>.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(28)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file29/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(36)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file37/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(12)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file13/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(20)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file21/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(4)/nf2_core/user_data_path/ids
-   /rf0/Mram_reg_file5/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
 WARNING:PhysDesignRules:812 - Dangling pin <DOA19> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/oq_full
    _thresh_reg/ram/Mram_ram.A>:<RAMB16_RAMB16A>.
@@ -6599,34 +6898,18 @@ WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/output_port_lookup/dest_ip_filter/cam_lut_sm/M
    ram_lut1.A>:<RAMB16_RAMB16A>.  The block is configured to use input parity
    pins. There are dangling output parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(37)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren38/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(45)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren46/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(53)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren54/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(61)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren62/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(29)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren30/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 WARNING:PhysDesignRules:1060 - Dangling pins on
    block:<nf2_core/user_data_path/ids/lt0/bram/B10.A>:<RAMB16_RAMB16A>.  The
    block is configured to use input parity pins. There are dangling output
    parity pins.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(37)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file38/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
+WARNING:PhysDesignRules:1060 - Dangling pins on
+   block:<nf2_core/user_data_path/ids/lt0/bram/B14.A>:<RAMB16_RAMB16A>.  The
+   block is configured to use input parity pins. There are dangling output
+   parity pins.
+WARNING:PhysDesignRules:1060 - Dangling pins on
+   block:<nf2_core/user_data_path/ids/lt0/bram/B18.A>:<RAMB16_RAMB16A>.  The
+   block is configured to use input parity pins. There are dangling output
+   parity pins.
 WARNING:PhysDesignRules:812 - Dangling pin <DOA19> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/oq_addr
    _hi_reg/ram/Mram_ram.A>:<RAMB16_RAMB16A>.
@@ -6705,130 +6988,6 @@ WARNING:PhysDesignRules:812 - Dangling pin <DOB30> on
 WARNING:PhysDesignRules:812 - Dangling pin <DOB31> on
    block:<nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/oq_addr
    _hi_reg/ram/Mram_ram.B>:<RAMB16_RAMB16B>.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(31)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file32/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(13)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file14/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(21)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file22/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(38)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren39/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(46)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren47/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(54)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren55/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(62)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren63/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(30)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren31/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(38)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file39/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(14)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file15/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(22)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file23/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(29)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file30/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(47)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren48/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(55)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren56/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(63)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren64/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(39)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren40/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(23)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file24/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(39)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file40/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(30)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file31/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(48)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren49/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(56)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren57/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(40)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren41/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(24)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file25/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(32)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file33/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(40)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file41/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(57)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren58/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(49)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren50/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(33)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file34/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0000(41)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file42/DP.F> is incomplete. The signal does not drive any load
-   pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(58)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren59/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
-WARNING:PhysDesignRules:367 - The signal
-   <nf2_core/user_data_path/ids/rf0/_varindex0001(50)/nf2_core/user_data_path/id
-   s/rf0/Mram_reg_file_ren51/DP.F> is incomplete. The signal does not drive any
-   load pins in the design.
 
 Section 3 - Informational
 -------------------------
@@ -6836,6 +6995,9 @@ INFO:Map:110 - output buffer 'phy_mdc_OBUF' driving design level port 'phy_mdc'
    is being pushed into module 'nf2_core/nf2_mdio' to enable I/O register usage.
    The buffer has been renamed as 'nf2_core/nf2_mdio/phy_mdc_OBUF'.
 INFO:MapLib:562 - No environment variables are currently set.
+INFO:MapLib:980 - The following NGM file is used during SmartGuide:
+   "nf2_top.ngm". The NGM file contains information on how the guide file was
+   originally mapped. It is required for the best SmartGuide results.
 INFO:MapLib:533 - The following XORCY(s) is/are demoted to LUTs because there is
    no MUXCY associated with them. Therefore, we cannot recognize the standard
    carry chain structure (5 of 262 are listed):
@@ -6864,85 +7026,16 @@ INFO:MapLib:533 - The following XORCY(s) is/are demoted to LUTs because there is
    bytes_removed_reg/Madd_curr_plus_new_b_xor(12)" (output
    signal=nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/num_ove
    rhead_bytes_removed_reg/curr_plus_new_b(12))
-INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
-   0.000 to 85.000 Celsius)
-INFO:Pack:1720 - Initializing voltage to 1.400 Volts. (default - Range: 1.400 to
-   1.600 Volts)
 INFO:Timing:3377 - Intersecting Constraints found and resolved.  For more
    information see the TSI report.
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_0" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_0) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_1" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_1) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_2" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_2) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_3" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_3) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_4" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_4) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_5" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_5) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_6" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_6) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_7" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_7) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_8" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_8) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_9" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_9) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_10" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_10) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_11" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_11) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
-INFO:Pack:1679 - FLOP symbol
-   "nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_12" (Output Signal =
-   nf2_core/user_data_path/ids/wb_mem_to_reg_w_REPLICA_12) was replicated from
-   FLOP symbol "nf2_core/user_data_path/ids/memwb0/mem_to_reg_o" (Output Signal
-   = nf2_core/user_data_path/ids/wb_mem_to_reg_w)
 INFO:Pack:1650 - Map created a placed design.
 
 Section 4 - Removed Logic Summary
 ---------------------------------
- 497 block(s) removed
- 358 block(s) optimized away
- 516 signal(s) removed
-1484 Block(s) redundant
+ 498 block(s) removed
+ 363 block(s) optimized away
+ 518 signal(s) removed
+1435 Block(s) redundant
 
 Section 5 - Removed Logic
 -------------------------
@@ -8329,8 +8422,10 @@ sourceless and has been removed.
 The signal
 "nf2_core/user_data_path/input_arbiter/in_arb_queues[0].in_arb_fifo/N0" is
 sourceless and has been removed.
-The signal "nf2_core/user_data_path/ids/im0/dout<19>" is sourceless and has been
-removed.
+The signal "nf2_core/user_data_path/ids/input_fifo/fifo/N0" is sourceless and
+has been removed.
+The signal "nf2_core/user_data_path/ids/sc0/im0/dout<19>" is sourceless and has
+been removed.
 The signal
 "nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_match_addr(31)" is
 sourceless and has been removed.
@@ -9753,6 +9848,9 @@ _mux000088" (ROM) removed.
 The signal
 "nf2_core/cpci_bus/pci2net_fifo/BU2/U0/grf.rf/gl0.wr/gwas.wsts/ram_almost_full_i
 _mux000026" is sourceless and has been removed.
+The signal
+"nf2_core/cpci_bus/pci2net_fifo/BU2/U0/grf.rf/gl0.wr/gwas.wsts/ram_almost_full_i
+_mux000051" is sourceless and has been removed.
 The signal "nf2_core/cpci_bus/pci2net_fifo/BU2/N29" is sourceless and has been
 removed.
  Sourceless block
@@ -9761,6 +9859,9 @@ _mux000051" (ROM) removed.
   The signal
 "nf2_core/cpci_bus/pci2net_fifo/BU2/U0/grf.rf/gl0.wr/gwas.wsts/ram_almost_full_i
 _mux000051/O" is sourceless and has been removed.
+   Sourceless block
+"nf2_core/cpci_bus/pci2net_fifo/BU2/U0/grf.rf/gl0.wr/gwas.wsts/ram_almost_full_i
+_mux000051/LUT4_L_BUF" (BUF) removed.
 The signal "nf2_core/cpci_bus/net2pci_fifo/full" is sourceless and has been
 removed.
 
@@ -10474,25 +10575,28 @@ GND 		nf2_core/unused_reg_core_256kb_0[5]..unused_reg_core_256kb_0_x/XST_GND
 VCC 		nf2_core/unused_reg_core_256kb_0[5]..unused_reg_core_256kb_0_x/XST_VCC
 GND 		nf2_core/unused_reg_core_4mb_0/XST_GND
 VCC 		nf2_core/unused_reg_core_4mb_0/XST_VCC
+GND 		nf2_core/user_data_path/ids/XLXI_14/GND
+VCC 		nf2_core/user_data_path/ids/XLXI_14/VCC
 GND 		nf2_core/user_data_path/ids/XST_GND
 VCC 		nf2_core/user_data_path/ids/XST_VCC
-VCC 		nf2_core/user_data_path/ids/bru0/XST_VCC
-GND 		nf2_core/user_data_path/ids/dm0/GND
-VCC 		nf2_core/user_data_path/ids/dm0/VCC
-GND 		nf2_core/user_data_path/ids/im0/GND
-VCC 		nf2_core/user_data_path/ids/im0/VCC
+GND 		nf2_core/user_data_path/ids/input_fifo/fifo/XST_GND
 GND 		nf2_core/user_data_path/ids/lt0/XST_GND
 VCC 		nf2_core/user_data_path/ids/lt0/XST_VCC
 GND 		nf2_core/user_data_path/ids/lt0/bram/GND
 VCC 		nf2_core/user_data_path/ids/lt0/bram/VCC
-GND 		nf2_core/user_data_path/ids/memwb0/XST_GND
 GND 		nf2_core/user_data_path/ids/module_regs/.generic_hw_regs/XST_GND
 VCC 		nf2_core/user_data_path/ids/module_regs/.generic_hw_regs/XST_VCC
 GND 		nf2_core/user_data_path/ids/module_regs/.generic_sw_regs/XST_GND
 VCC 		nf2_core/user_data_path/ids/module_regs/.generic_sw_regs/XST_VCC
 GND 		nf2_core/user_data_path/ids/module_regs/XST_GND
 VCC 		nf2_core/user_data_path/ids/module_regs/XST_VCC
-GND 		nf2_core/user_data_path/ids/rf0/XST_GND
+GND 		nf2_core/user_data_path/ids/sc0/XST_GND
+VCC 		nf2_core/user_data_path/ids/sc0/bru0/XST_VCC
+GND 		nf2_core/user_data_path/ids/sc0/idex0/XST_GND
+GND 		nf2_core/user_data_path/ids/sc0/im0/GND
+VCC 		nf2_core/user_data_path/ids/sc0/im0/VCC
+GND 		nf2_core/user_data_path/ids/sc0/memwb0/XST_GND
+GND 		nf2_core/user_data_path/ids/sc0/rf0/XST_GND
 GND 		nf2_core/user_data_path/input_arbiter/in_arb_queues[0].in_arb_fifo/XST_GND
 GND 		nf2_core/user_data_path/input_arbiter/in_arb_queues[1].in_arb_fifo/XST_GND
 GND 		nf2_core/user_data_path/input_arbiter/in_arb_queues[2].in_arb_fifo/XST_GND
@@ -10833,6 +10937,8 @@ VCC
 .gmac_tx_fifo/BU2/XST_VCC
 GND 		nf2_core/user_data_path/output_queues/store_pkt/XST_GND
 VCC 		nf2_core/user_data_path/output_queues/store_pkt/XST_VCC
+GND 		nf2_core/user_data_path/ids/sc0/alu0/XST_GND
+VCC 		nf2_core/user_data_path/ids/sc0/alu0/XST_VCC
 MUXCY
 		nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/num_overhead_by
 tes_removed_reg/Madd_curr_plus_new_a_cy(0)
@@ -10854,9 +10960,6 @@ Madd_curr_plus_new_a_cy(0)
 
 Redundant Block(s):
 TYPE 		BLOCK
-LOCALBUF
-		nf2_core/cpci_bus/pci2net_fifo/BU2/U0/grf.rf/gl0.wr/gwas.wsts/ram_almost_full_
-i_mux000051/LUT4_L_BUF
 LOCALBUF
 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1528/U0/wr_count_i
 nteger_srl_mux0003<0>1_SW0/LUT3_L_BUF
@@ -11000,6 +11103,52 @@ r0000118/LUT4_L_BUF
 LOCALBUF
 		nf2_core/cpci_bus/net2pci_fifo/BU2/U0/grf.rf/gl0.wr/gwas.wsts/ram_full_i_or000
 070_SW0/LUT3_L_BUF
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU440
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU474
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU508
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU542
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU576
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU610
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU644
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU678
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU712
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU746
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU780
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU814
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU848
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU882
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU916
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU950
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU984
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1018
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1052
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1086
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1120
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1154
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1188
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1222
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1256
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1290
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1324
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1358
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1392
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1426
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1460
+INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1494
+INV 		nf2_core/user_data_path/output_port_lookup/in_rdy1_INV_0
+INV 		nf2_core/nf2_dma/nf2_dma_regs/state_nxt1_INV_0
+LOCALBUF
+		nf2_core/cpu_queues[3].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx_fifo/BU
+2/U0/grf.rf/gl0.wr/gwas.gpf.wrpf/prog_full_i_mux000327_SW0/LUT3_L_BUF
+LOCALBUF
+		nf2_core/cpu_queues[2].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx_fifo/BU
+2/U0/grf.rf/gl0.wr/gwas.gpf.wrpf/prog_full_i_mux000327_SW0/LUT3_L_BUF
+LOCALBUF
+		nf2_core/cpu_queues[1].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx_fifo/BU
+2/U0/grf.rf/gl0.wr/gwas.gpf.wrpf/prog_full_i_mux000327_SW0/LUT3_L_BUF
+LOCALBUF
+		nf2_core/cpu_queues[0].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx_fifo/BU
+2/U0/grf.rf/gl0.wr/gwas.gpf.wrpf/prog_full_i_mux000327_SW0/LUT3_L_BUF
 LUT1 		nf2_core/user_data_path/input_arbiter/in_arb_regs/Mcount_eop_cnt_cy(1)_rt
 LUT1 		nf2_core/user_data_path/input_arbiter/in_arb_regs/Mcount_eop_cnt_cy(2)_rt
 LUT1 		nf2_core/user_data_path/input_arbiter/in_arb_regs/Mcount_eop_cnt_cy(3)_rt
@@ -11133,140 +11282,6 @@ INV 		nf2_core/user_data_path/input_arbiter/in_rdy_71_INV_0
 INV 		nf2_core/user_data_path/input_arbiter/in_rdy_51_INV_0
 INV 		nf2_core/user_data_path/input_arbiter/in_rdy_31_INV_0
 INV 		nf2_core/user_data_path/input_arbiter/in_rdy_11_INV_0
-INV 		nf2_core/user_data_path/ids/ifid0/hazard_inv1_INV_0
-INV 		nf2_core/user_data_path/ids/hazard_w_inv1_INV_0
-INV
-		nf2_core/user_data_path/ids/bru0/Mcompar_out_branch_cmp_lt0000_cy(63)_inv_INV_
-0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv1_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv2_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv3_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv4_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv5_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv6_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv7_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv8_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv9_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv10_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv11_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv12_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv13_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv14_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv15_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv16_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv17_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv18_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv19_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv20_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv21_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv22_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv23_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv24_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv25_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv26_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv27_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv28_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv29_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv30_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv31_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv32_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv33_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv34_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv35_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv36_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv37_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv38_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv39_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv40_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv41_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv42_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv43_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv44_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv45_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv46_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv47_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv48_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv49_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv50_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv51_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv52_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv53_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv54_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv55_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv56_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv57_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv58_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv59_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv60_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv61_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv62_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv63_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv64_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv65_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv66_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv67_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv68_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv69_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv70_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv71_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv72_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv73_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv74_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv75_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv76_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv77_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv78_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv79_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv80_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv81_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv82_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv83_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv84_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv85_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv86_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv87_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv88_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv89_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv90_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv91_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv92_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv93_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv94_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv95_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv96_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv97_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv98_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv99_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv100_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv101_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv102_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv103_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv104_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv105_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv106_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv107_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv108_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv109_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv110_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv111_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv112_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv113_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv114_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv115_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv116_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv117_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv118_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv119_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv120_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv121_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv122_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv123_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv124_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv125_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv126_INV_0
-INV 		nf2_core/user_data_path/ids/rf0/clk_i_inv127_INV_0
-INV 		nf2_core/invert_clk
 LUT1 		nf2_core/user_data_path/ids/lt0/Mcount_count_r_cy(1)_rt
 LUT1 		nf2_core/user_data_path/ids/lt0/Mcount_count_r_cy(2)_rt
 LUT1 		nf2_core/user_data_path/ids/lt0/Mcount_count_r_cy(3)_rt
@@ -11274,22 +11289,156 @@ LUT1 		nf2_core/user_data_path/ids/lt0/Mcount_count_r_cy(4)_rt
 LUT1 		nf2_core/user_data_path/ids/lt0/Mcount_count_r_cy(5)_rt
 LUT1 		nf2_core/user_data_path/ids/lt0/Mcount_count_r_cy(6)_rt
 LUT1 		nf2_core/user_data_path/ids/lt0/Mcount_count_r_xor(7)_rt
+INV 		nf2_core/user_data_path/ids/input_fifo/fifo/Mcount_wr_ptr_xor(0)11_INV_0
+INV 		nf2_core/user_data_path/ids/input_fifo/fifo/Mcount_rd_ptr_xor(0)11_INV_0
+INV 		nf2_core/user_data_path/ids/input_fifo/fifo/Mcount_depth_xor(0)11_INV_0
+INV
+		nf2_core/user_data_path/ids/sc0/bru0/Mcompar_out_branch_cmp_lt0000_cy(63)_inv_
+INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv1_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv2_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv3_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv4_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv5_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv6_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv7_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv8_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv9_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv10_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv11_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv12_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv13_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv14_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv15_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv16_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv17_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv18_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv19_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv20_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv21_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv22_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv23_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv24_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv25_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv26_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv27_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv28_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv29_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv30_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv31_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv32_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv33_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv34_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv35_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv36_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv37_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv38_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv39_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv40_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv41_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv42_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv43_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv44_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv45_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv46_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv47_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv48_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv49_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv50_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv51_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv52_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv53_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv54_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv55_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv56_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv57_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv58_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv59_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv60_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv61_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv62_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv63_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv64_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv65_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv66_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv67_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv68_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv69_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv70_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv71_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv72_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv73_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv74_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv75_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv76_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv77_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv78_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv79_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv80_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv81_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv82_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv83_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv84_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv85_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv86_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv87_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv88_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv89_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv90_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv91_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv92_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv93_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv94_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv95_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv96_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv97_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv98_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv99_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv100_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv101_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv102_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv103_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv104_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv105_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv106_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv107_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv108_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv109_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv110_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv111_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv112_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv113_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv114_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv115_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv116_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv117_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv118_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv119_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv120_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv121_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv122_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv123_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv124_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv125_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv126_INV_0
+INV 		nf2_core/user_data_path/ids/sc0/rf0/clk_i_inv127_INV_0
+INV 		nf2_core/invert_clk
 LUT1 		nf2_core/user_data_path/ids/module_regs/reg_ack_out_and0000_wg_cy(0)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_readptr_cy(1)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_readptr_cy(2)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_readptr_cy(3)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_readptr_cy(4)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_readptr_cy(5)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_readptr_cy(6)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_writeptr_r_cy(1)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_writeptr_r_cy(2)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_writeptr_r_cy(3)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_writeptr_r_cy(4)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_writeptr_r_cy(5)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_writeptr_r_cy(6)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_readptr_xor(7)_rt
-LUT1 		nf2_core/user_data_path/ids/Mcount_writeptr_r_xor(7)_rt
-INV 		nf2_core/user_data_path/ids/cpu_mode_r_inv1_INV_0
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_writeptr_r_cy(1)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_writeptr_r_cy(2)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_writeptr_r_cy(3)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_writeptr_r_cy(4)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_writeptr_r_cy(5)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_writeptr_r_cy(6)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_readptr_r_cy(1)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_readptr_r_cy(2)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_readptr_r_cy(3)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_readptr_r_cy(4)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_readptr_r_cy(5)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_readptr_r_cy(6)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_writeptr_r_xor(7)_rt
+LUT1 		nf2_core/user_data_path/ids/Mcount_bmemasfifo_readptr_r_xor(7)_rt
 INV
 		nf2_core/user_data_path/output_port_lookup/input_fifo/fifo/Mcount_wr_ptr_xor(0
 )11_INV_0
@@ -11299,38 +11448,6 @@ INV
 INV
 		nf2_core/user_data_path/output_port_lookup/input_fifo/fifo/Mcount_depth_xor(0)
 11_INV_0
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU440
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU474
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU508
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU542
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU576
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU610
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU644
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU678
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU712
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU746
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU780
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU814
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU848
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU882
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU916
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU950
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU984
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1018
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1052
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1086
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1120
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1154
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1188
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1222
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1256
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1290
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1324
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1358
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1392
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1426
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1460
-INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_cam/BU1494
 INV
 		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm/Mcount_reset_coun
 t_xor(0)11_INV_0
@@ -11366,92 +11483,6 @@ INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_rd_mask(11)1_INV_0
 INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_rd_mask(10)1_INV_0
 INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_rd_mask(1)1_INV_0
 INV 		nf2_core/user_data_path/output_port_lookup/ip_lpm/lpm_rd_mask(0)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(9)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(8)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(7)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(6)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(5)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(4)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(31)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(30)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(3)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(29)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(28)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(27)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(26)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(25)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(24)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(23)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(22)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(21)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(20)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(2)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(19)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(18)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(17)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(16)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(15)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(14)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(13)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(12)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(11)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(10)1_INV_
-0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(1)1_INV_0
-INV
-		nf2_core/user_data_path/output_port_lookup/ip_lpm/cam_lut_sm_not0000(0)1_INV_0
 INV
 		nf2_core/user_data_path/output_port_lookup/eth_parser/eth_fifo/fifo/Mcount_wr_
 ptr_xor(0)11_INV_0
@@ -11542,7 +11573,6 @@ INV
 /generic_cntr_regs/reset_inv1_INV_0
 INV
 		nf2_core/user_data_path/output_port_lookup/op_lut_process_sm_not00001_INV_0
-INV 		nf2_core/user_data_path/output_port_lookup/in_rdy1_INV_0
 LUT1
 		nf2_core/user_data_path/output_queues/store_pkt/Madd_wr_0_addr_plus1_addsub000
 0_cy(1)_rt
@@ -12112,9 +12142,6 @@ INV
 _depth_xor(0)11_INV_0
 INV 		nf2_core/user_data_path/output_queues/oq_header_parser/dst_oq_avail1_INV_0
 INV
-		nf2_core/user_data_path/output_queues/oq_header_parser/header_parser_rdy1_INV_
-0
-INV
 		nf2_core/user_data_path/output_queues/oq_regs/oq_regs_ctrl/Mcount_reg_cnt_xor(
 0)11_INV_0
 INV
@@ -12137,8 +12164,6 @@ eg/wr_update_b_inv1_INV_0
 INV
 		nf2_core/user_data_path/output_queues/oq_regs/oq_reg_instances/num_words_left_
 reg/wr_update_a_inv1_INV_0
-INV
-		nf2_core/cpu_queues[3].cpu_dma_queue_i/.cpu_dma_queue_regs/tx_queue_en1_INV_0
 INV
 		nf2_core/cpu_queues[3].cpu_dma_queue_i/.cpu_dma_queue_regs/rx_queue_en1_INV_0
 LUT1
@@ -12276,8 +12301,6 @@ INV
 		nf2_core/cpu_queues[3].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_q_dma_wr_inv1_INV_
 0
 INV
-		nf2_core/cpu_queues[2].cpu_dma_queue_i/.cpu_dma_queue_regs/tx_queue_en1_INV_0
-INV
 		nf2_core/cpu_queues[2].cpu_dma_queue_i/.cpu_dma_queue_regs/rx_queue_en1_INV_0
 LUT1
 		nf2_core/cpu_queues[2].cpu_dma_queue_i/cpu_dma_tx_queue/cpu_fifos64.tx_fifo/BU
@@ -12413,8 +12436,6 @@ INV 		nf2_core/cpu_queues[2].cpu_dma_queue_i/cpu_dma_rx_queue/reset_inv1_INV_0
 INV
 		nf2_core/cpu_queues[2].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_q_dma_wr_inv1_INV_
 0
-INV
-		nf2_core/cpu_queues[1].cpu_dma_queue_i/.cpu_dma_queue_regs/tx_queue_en1_INV_0
 INV
 		nf2_core/cpu_queues[1].cpu_dma_queue_i/.cpu_dma_queue_regs/rx_queue_en1_INV_0
 LUT1
@@ -12552,8 +12573,6 @@ INV
 		nf2_core/cpu_queues[1].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_q_dma_wr_inv1_INV_
 0
 INV
-		nf2_core/cpu_queues[0].cpu_dma_queue_i/.cpu_dma_queue_regs/tx_queue_en1_INV_0
-INV
 		nf2_core/cpu_queues[0].cpu_dma_queue_i/.cpu_dma_queue_regs/rx_queue_en1_INV_0
 LUT1
 		nf2_core/cpu_queues[0].cpu_dma_queue_i/cpu_dma_rx_queue/cpu_fifos64.rx_fifo/BU
@@ -12690,10 +12709,6 @@ INV
 		nf2_core/cpu_queues[0].cpu_dma_queue_i/cpu_dma_tx_queue/cpu_q_dma_rd_inv1_INV_
 0
 INV 		nf2_core/mac_groups[3].nf2_mac_grp/mac_grp_regs/tx_queue_en1_INV_0
-INV 		nf2_core/mac_groups[3].nf2_mac_grp/mac_grp_regs/tx_mac_en1_INV_0
-INV 		nf2_core/mac_groups[3].nf2_mac_grp/mac_grp_regs/rx_mac_en1_INV_0
-INV 		nf2_core/mac_groups[3].nf2_mac_grp/mac_grp_regs/enable_jumbo_tx1_INV_0
-INV 		nf2_core/mac_groups[3].nf2_mac_grp/mac_grp_regs/enable_jumbo_rx1_INV_0
 INV 		nf2_core/mac_groups[3].nf2_mac_grp/mac_grp_regs/rx_queue_en1_INV_0
 LUT1
 		nf2_core/mac_groups[3].nf2_mac_grp/tx_queue/tx_fifo_64.gmac_tx_fifo/BU2/U0/grf
@@ -13169,10 +13184,6 @@ LUT1
 		nf2_core/mac_groups[3].nf2_mac_grp/gig_eth_mac/mac_rx/Madd_rx_counter_next_add
 sub0000_xor(13)_rt
 INV 		nf2_core/mac_groups[2].nf2_mac_grp/mac_grp_regs/tx_queue_en1_INV_0
-INV 		nf2_core/mac_groups[2].nf2_mac_grp/mac_grp_regs/tx_mac_en1_INV_0
-INV 		nf2_core/mac_groups[2].nf2_mac_grp/mac_grp_regs/rx_mac_en1_INV_0
-INV 		nf2_core/mac_groups[2].nf2_mac_grp/mac_grp_regs/enable_jumbo_tx1_INV_0
-INV 		nf2_core/mac_groups[2].nf2_mac_grp/mac_grp_regs/enable_jumbo_rx1_INV_0
 INV 		nf2_core/mac_groups[2].nf2_mac_grp/mac_grp_regs/rx_queue_en1_INV_0
 LUT1
 		nf2_core/mac_groups[2].nf2_mac_grp/tx_queue/tx_fifo_64.gmac_tx_fifo/BU2/U0/grf
@@ -13648,10 +13659,6 @@ LUT1
 		nf2_core/mac_groups[2].nf2_mac_grp/gig_eth_mac/mac_rx/Madd_rx_counter_next_add
 sub0000_xor(13)_rt
 INV 		nf2_core/mac_groups[1].nf2_mac_grp/mac_grp_regs/tx_queue_en1_INV_0
-INV 		nf2_core/mac_groups[1].nf2_mac_grp/mac_grp_regs/tx_mac_en1_INV_0
-INV 		nf2_core/mac_groups[1].nf2_mac_grp/mac_grp_regs/rx_mac_en1_INV_0
-INV 		nf2_core/mac_groups[1].nf2_mac_grp/mac_grp_regs/enable_jumbo_tx1_INV_0
-INV 		nf2_core/mac_groups[1].nf2_mac_grp/mac_grp_regs/enable_jumbo_rx1_INV_0
 INV 		nf2_core/mac_groups[1].nf2_mac_grp/mac_grp_regs/rx_queue_en1_INV_0
 LUT1
 		nf2_core/mac_groups[1].nf2_mac_grp/tx_queue/tx_fifo_64.gmac_tx_fifo/BU2/U0/grf
@@ -14127,10 +14134,6 @@ LUT1
 		nf2_core/mac_groups[1].nf2_mac_grp/gig_eth_mac/mac_rx/Madd_rx_counter_next_add
 sub0000_xor(13)_rt
 INV 		nf2_core/mac_groups[0].nf2_mac_grp/mac_grp_regs/tx_queue_en1_INV_0
-INV 		nf2_core/mac_groups[0].nf2_mac_grp/mac_grp_regs/tx_mac_en1_INV_0
-INV 		nf2_core/mac_groups[0].nf2_mac_grp/mac_grp_regs/rx_mac_en1_INV_0
-INV 		nf2_core/mac_groups[0].nf2_mac_grp/mac_grp_regs/enable_jumbo_tx1_INV_0
-INV 		nf2_core/mac_groups[0].nf2_mac_grp/mac_grp_regs/enable_jumbo_rx1_INV_0
 INV 		nf2_core/mac_groups[0].nf2_mac_grp/mac_grp_regs/rx_queue_en1_INV_0
 LUT1
 		nf2_core/mac_groups[0].nf2_mac_grp/rx_queue/rx_fifo_64.gmac_rx_fifo/BU2/U0/gen
@@ -15434,7 +15437,27 @@ Section 7 - RPMs
 
 Section 8 - Guide Report
 ------------------------
-Guide not run on this design.
+
+Sun Apr 09 14:22:03 2023
+
+  Estimated SmartGuide Results
+  ----------------------------
+  This section describes the guide results after placement. Re-implemented 
+  components are components that were guided, but moved in order to satisfy
+  timing requirements.
+
+    Estimated Percentage of guided Components                 |  99.1%
+    Estimated Percentage of re-implemented Components         |   0.9%
+    Estimated Percentage of new/changed Components            |   0.1%
+    Estimated Percentage of fully guided Nets                 |  98.8%
+    Estimated Percentage of partially guided or unrouted Nets |   1.2%
+
+  A detailed SmartGuide report (.GRF) can be generated during PAR by
+  specifying the [-smartguide <guidefile[.ncd]>] switch on the PAR
+  command line. The GRF file contains all components and nets that were
+  not guided. A final summary report is always generated and is available
+  in the PAR report file regardless of the PAR -smartguide switch.
+
 
 Section 9 - Area Group and Partition Summary
 --------------------------------------------
@@ -20340,7 +20363,7 @@ INIT_B = 000000000
 SRVAL_B = 000000000
 
 
-RAMB16 "nf2_core/user_data_path/ids/dm0/B10":
+RAMB16 "nf2_core/user_data_path/ids/XLXI_14/B10":
 INITP_00 = 0000000000000000000000000000000000000000000000000000000000000000
 INITP_01 = 0000000000000000000000000000000000000000000000000000000000000000
 INITP_02 = 0000000000000000000000000000000000000000000000000000000000000000
@@ -20423,7 +20446,7 @@ INIT_B = 000000000
 SRVAL_B = 000000000
 
 
-RAMB16 "nf2_core/user_data_path/ids/dm0/B6":
+RAMB16 "nf2_core/user_data_path/ids/XLXI_14/B6":
 INITP_00 = 0000000000000000000000000000000000000000000000000000000000000000
 INITP_01 = 0000000000000000000000000000000000000000000000000000000000000000
 INITP_02 = 0000000000000000000000000000000000000000000000000000000000000000
@@ -20504,88 +20527,258 @@ PORTB_ATTR:512X36
 WRITEMODEB:WRITE_FIRST
 INIT_B = 000000000
 SRVAL_B = 000000000
-
-
-RAMB16 "nf2_core/user_data_path/ids/im0/B6":
-INITP_00 = 0000000000000000000000000000000000000000000000000000000000000000
-INITP_01 = 0000000000000000000000000000000000000000000000000000000000000000
-INITP_02 = 0000000000000000000000000000000000000000000000000000000000000000
-INITP_03 = 0000000000000000000000000000000000000000000000000000000000000000
-INITP_04 = 0000000000000000000000000000000000000000000000000000000000000000
-INITP_05 = 0000000000000000000000000000000000000000000000000000000000000000
-INITP_06 = 0000000000000000000000000000000000000000000000000000000000000000
-INITP_07 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_00 = 0000001300000013fe62cbe30000001300000013007063130000001320003283
-INIT_01 = 00000013000000130013b2a3001080930053b083000000130000001340003383
-INIT_02 = 000000000000000000000000000000000000000000000000fdfff06f10203023
-INIT_03 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_04 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_05 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_06 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_07 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_08 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_09 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_0a = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_0b = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_0c = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_0d = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_0e = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_0f = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_10 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_11 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_12 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_13 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_14 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_15 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_16 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_17 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_18 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_19 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_1a = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_1b = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_1c = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_1d = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_1e = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_1f = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_20 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_21 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_22 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_23 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_24 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_25 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_26 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_27 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_28 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_29 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_2a = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_2b = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_2c = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_2d = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_2e = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_2f = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_30 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_31 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_32 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_33 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_34 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_35 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_36 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_37 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_38 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_39 = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_3a = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_3b = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_3c = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_3d = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_3e = 0000000000000000000000000000000000000000000000000000000000000000
-INIT_3f = 0000000000000000000000000000000000000000000000000000000000000000
-PORTA_ATTR:512X36
-WRITEMODEA:WRITE_FIRST
-INIT_A = 000000000
-SRVAL_A = 000000000
 
 
 RAMB16 "nf2_core/user_data_path/ids/lt0/bram/B10":
+INITP_00 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_01 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_02 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_03 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_04 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_05 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_06 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_07 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_00 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_01 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_02 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_03 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_04 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_05 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_06 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_07 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_08 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_09 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_10 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_11 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_12 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_13 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_14 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_15 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_16 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_17 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_18 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_19 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_20 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_21 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_22 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_23 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_24 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_25 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_26 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_27 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_28 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_29 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_30 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_31 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_32 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_33 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_34 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_35 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_36 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_37 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_38 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_39 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3f = 0000000000000000000000000000000000000000000000000000000000000000
+PORTA_ATTR:512X36
+WRITEMODEA:NO_CHANGE
+INIT_A = 000000000
+SRVAL_A = 000000000
+PORTB_ATTR:512X36
+WRITEMODEB:WRITE_FIRST
+INIT_B = 000000000
+SRVAL_B = 000000000
+
+
+RAMB16 "nf2_core/user_data_path/ids/lt0/bram/B14":
+INITP_00 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_01 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_02 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_03 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_04 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_05 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_06 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_07 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_00 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_01 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_02 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_03 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_04 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_05 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_06 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_07 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_08 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_09 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_10 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_11 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_12 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_13 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_14 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_15 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_16 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_17 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_18 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_19 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_20 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_21 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_22 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_23 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_24 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_25 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_26 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_27 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_28 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_29 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_30 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_31 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_32 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_33 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_34 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_35 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_36 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_37 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_38 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_39 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3f = 0000000000000000000000000000000000000000000000000000000000000000
+PORTA_ATTR:512X36
+WRITEMODEA:NO_CHANGE
+INIT_A = 000000000
+SRVAL_A = 000000000
+PORTB_ATTR:512X36
+WRITEMODEB:WRITE_FIRST
+INIT_B = 000000000
+SRVAL_B = 000000000
+
+
+RAMB16 "nf2_core/user_data_path/ids/lt0/bram/B18":
+INITP_00 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_01 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_02 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_03 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_04 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_05 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_06 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_07 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_00 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_01 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_02 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_03 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_04 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_05 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_06 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_07 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_08 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_09 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_10 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_11 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_12 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_13 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_14 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_15 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_16 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_17 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_18 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_19 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_20 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_21 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_22 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_23 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_24 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_25 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_26 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_27 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_28 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_29 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_30 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_31 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_32 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_33 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_34 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_35 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_36 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_37 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_38 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_39 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3f = 0000000000000000000000000000000000000000000000000000000000000000
+PORTA_ATTR:512X36
+WRITEMODEA:NO_CHANGE
+INIT_A = 000000000
+SRVAL_A = 000000000
+PORTB_ATTR:512X36
+WRITEMODEB:WRITE_FIRST
+INIT_B = 000000000
+SRVAL_B = 000000000
+
+
+RAMB16 "nf2_core/user_data_path/ids/lt0/bram/B22":
 INITP_00 = 0000000000000000000000000000000000000000000000000000000000000000
 INITP_01 = 0000000000000000000000000000000000000000000000000000000000000000
 INITP_02 = 0000000000000000000000000000000000000000000000000000000000000000
@@ -20749,6 +20942,85 @@ PORTB_ATTR:512X36
 WRITEMODEB:WRITE_FIRST
 INIT_B = 000000000
 SRVAL_B = 000000000
+
+
+RAMB16 "nf2_core/user_data_path/ids/sc0/im0/B6":
+INITP_00 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_01 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_02 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_03 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_04 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_05 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_06 = 0000000000000000000000000000000000000000000000000000000000000000
+INITP_07 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_00 = 0000001300000013003061131000308320306193002062130010631300006413
+INIT_01 = 000000130031011300000013000000130000001320003103fe20cbe300000013
+INIT_02 = 000000130ff0f093000000130000001300000013000130830000001300000013
+INIT_03 = 40203023000000130000001300000013001061130040ca630000001300000013
+INIT_04 = 00000013000000130000001300210113fc3ff06f000000130000001300000013
+INIT_05 = 000000130000001300000013000084b300000013000000130000001300013083
+INIT_06 = 000000130000001300000013000304130000001300000013000000134300d093
+INIT_07 = 000000130000001300000013fff4041300000013000000130000001301041413
+INIT_08 = 000000130000001300000013403080b30000001300000013000000130080f0b3
+INIT_09 = 000000130000001380006293f9fff06f0000001300000013000000130060c563
+INIT_0a = 0000001300000013005484b300000013000000130000001302d2929300000013
+INIT_0b = 0000000000000000f7dff06f0000001300000013000000130091302300000013
+INIT_0c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_0f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_10 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_11 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_12 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_13 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_14 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_15 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_16 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_17 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_18 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_19 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_1f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_20 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_21 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_22 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_23 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_24 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_25 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_26 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_27 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_28 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_29 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_2f = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_30 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_31 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_32 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_33 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_34 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_35 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_36 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_37 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_38 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_39 = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3a = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3b = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3c = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3d = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3e = 0000000000000000000000000000000000000000000000000000000000000000
+INIT_3f = 0000000000000000000000000000000000000000000000000000000000000000
+PORTA_ATTR:512X36
+WRITEMODEA:WRITE_FIRST
+INIT_A = 000000000
+SRVAL_A = 000000000
 
 
 RAMB16

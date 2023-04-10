@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:set shiftwidth=3 softtabstop=3 expandtab:
 // $Id: module_template 2008-03-13 gac1 $
-//
 // Module: ids.v
 // Project: NF2.1
 // Description: Defines a simple ids module for the user data path.  The
@@ -58,25 +57,26 @@ module ids
    // `LOG2_FUNC
 
    //------------------------- Parameters-------------------------------
-   parameter PROC_DATA_WIDTH              = 16;
-   parameter PROC_REGFILE_LOG2_DEEP       = 5;                             
-   parameter NUM_REGISTERS                = 32;                                                        
-   parameter BMEM_LOG2_DEEP               = 8;
-   parameter INSTMEM_LOG2_DEEP            = 8;                                                         
-   localparam BMEM_DATA_WIDTH             = CTRL_WIDTH+DATA_WIDTH; 
-   localparam STATEMACHINE_STATUS_ADDR_BIT = 8;
-   localparam READPTR_ADDR_BIT            = 9;                                                             
-   localparam CPU_JOB_STATUS_ADDR_BIT     = 10;                                                        
-   localparam NUM_SPECIAL_REG             = 3;                    
-   localparam THREAD0_START_ADDR          = 8'd0;                                                      
+   parameter PROC_DATA_WIDTH                 = 64;
+   parameter PROC_REGFILE_LOG2_DEEP          = 5;                             
+   parameter NUM_REGISTERS                   = 2**PROC_REGFILE_LOG2_DEEP;                                        
+   parameter BMEM_LOG2_DEEP                  = 8;
+   parameter INSTMEM_LOG2_DEEP               = 8;                              
+   localparam BMEM_DATA_WIDTH                = CTRL_WIDTH+DATA_WIDTH; 
+   localparam STATEMACHINE_STATUS_ADDR_BIT   = 8;
+   localparam READPTR_ADDR_BIT               = 9;                                                             
+   localparam CPU_JOB_STATUS_ADDR_BIT        = 10;                                                        
+   localparam NUM_SPECIAL_REG                = 3;                    
+   localparam THREAD0_START_ADDR             = 8'd0;                                                      
    localparam THREAD0_UPSTREAM_STATUS_BIT_POS             = 0; 
-   localparam COOLOFFCOUNT                = 1; // in simulation this value was found to be 2
-   parameter PROC_DATA_INTERFACE_HIGHBIT  = 63;
-   parameter PROC_DATA_INTERFACE_LOWBIT   = PROC_DATA_INTERFACE_HIGHBIT - PROC_DATA_WIDTH + 1;
-   parameter START                        = 2'b00;
-   parameter PAYLOAD                      = 2'b01;
-   parameter CPU_PROCESS                  = 2'b11;
-   parameter READ_READY                   = 2'b10;
+   parameter PROC_DATA_INTERFACE_HIGHBIT     = 63;
+   parameter PROC_DATA_INTERFACE_LOWBIT      = PROC_DATA_INTERFACE_HIGHBIT - PROC_DATA_WIDTH + 1;
+   parameter START                           = 2'b00;
+   parameter PAYLOAD                         = 2'b01;
+   parameter CPU_PROCESS                     = 2'b11;
+   parameter READ_READY                      = 2'b10;
+   parameter LOGTHIEF_DATA_WIDTH             = 192;   // 2 (STATE ENCODING) + 1 (WEN)+ INSTMEM_LOG2_DEEP + 2*(BMEM_LOG2_DEEP) + 2*(CTRL_WIDTH + DATA_WIDTH)
+   parameter LOGTHIEF_LOG2_DEEP              = 8;
 
    //------------------------- Signals-------------------------------
    
@@ -85,31 +85,34 @@ module ids
    wire [DATA_WIDTH-1:0]         in_fifo_data_p;
    wire [CTRL_WIDTH-1:0]         in_fifo_ctrl_p;   // decide the movement of state machine
 	
-   reg [DATA_WIDTH-1:0]         in_fifo_data;
-   reg [CTRL_WIDTH-1:0]         in_fifo_ctrl;
-
    wire                          ftsf_nearly_full;
    wire                          ftsf_empty_w;     // fall through small fifo - ftsf
-   reg [2:0]                     cooloff_counter_next_w;
-   reg [2:0]                     cooloff_counter_r;
+   //reg [2:0]                     cooloff_counter_next_w;
+   //reg [2:0]                     cooloff_counter_r;
    reg                           ftsf_rd_en_w;
    reg                           in_fifo_wr_messenger_r;
    reg			         in_fifo_wr_messenger_next;
    reg                           cpu_active_next;
    reg                           cpu_active_r;
-   reg [2:0]                     waitforcpujobcomplete_counter_r;
-   reg [2:0]                     waitforcpujobcomplete_counter_next;
+   //reg [2:0]                     waitforcpujobcomplete_counter_r;
+   //reg [2:0]                     waitforcpujobcomplete_counter_next;
    // software registers 
    wire [31:0]                   sw_readaddr_w;
    wire [31:0]                   sw_cmd_w;
-   wire [31:0]                   ids_cmd;
+   //wire [31:0]                   ids_cmd;
    // hardware registers
-   reg [31:0]                    hw_data_ctrl;
-   reg [31:0]                    hw_data_high;
-   reg [31:0]                    hw_data_low;
+   //reg [31:0]                    hw_data_ctrl;
+   //reg [31:0]                    hw_data_high;
+   //reg [31:0]                    hw_data_low;
+   reg [31:0]                    hw_data0;
+   reg [31:0]                    hw_data1;
+   reg [31:0]                    hw_data2;
+   reg [31:0]                    hw_data3;
+   reg [31:0]                    hw_data4;
+   reg [31:0]                    hw_data5;
 
    // logic thief
-   wire [95:0]                   dataout_96bit_w;
+   wire [LOGTHIEF_DATA_WIDTH-1:0]      logicthief_dataout_w;
    // internal state
    reg [1:0]                           state, state_next;
 
@@ -131,13 +134,15 @@ module ids
    // mem_alu_out_w only BMEM_LOG2_DEEP is used in ids.v as this signal is
    // used for read and write address, whereas in processor this signal MAY be
    // used for carrying alu results as well
-   wire [BMEM_LOG2_DEEP+NUM_SPECIAL_REG-1:0]           mem_alu_out_w;
-   reg [BMEM_LOG2_DEEP+NUM_SPECIAL_REG-1:0]            mem_alu_out_r;
-   wire [PROC_DATA_WIDTH-1:0]          mem_r2_out_w;
-   wire [PROC_DATA_WIDTH-1:0]          wb_r2_out_w;
-   wire [PROC_DATA_WIDTH-1:0]          mem_read_data_wb_r2_out_w;
-   wire                                cpu_job_complete_w;
-   reg [CTRL_WIDTH+DATA_WIDTH-1:0]     sync_data_r;
+   wire [BMEM_LOG2_DEEP+NUM_SPECIAL_REG-1:0]       mem_alu_out_w;
+   //reg [BMEM_LOG2_DEEP+NUM_SPECIAL_REG-1:0]            mem_alu_out_r;
+   wire [PROC_DATA_WIDTH-1:0]                      mem_r2_out_w;
+   //wire [PROC_DATA_WIDTH-1:0]                      wb_r2_out_w;
+   //wire [PROC_DATA_WIDTH-1:0]                      mem_read_data_wb_r2_out_w;
+   wire                                            cpu_job_complete_w;
+   wire [INSTMEM_LOG2_DEEP-1:0]                    mem_pc_carry_baggage_w;
+   wire [CTRL_WIDTH-1:0]                           augment_proc_writedata_w;  // whenever cpu writes to bmem, this signal helps write data equal to 72 bit
+   //reg [CTRL_WIDTH+DATA_WIDTH-1:0]                 sync_data_r;
  
    //------------------------- Modules-------------------------------
 
@@ -146,7 +151,7 @@ module ids
       .MAX_DEPTH_BITS(2)
    ) input_fifo (
       .din           ({in_ctrl, in_data}),   // Data in
-      .wr_en         (in_wr),                // Write enable
+      .wr_en         (in_wr & state_next != CPU_PROCESS & state_next!= READ_READY),                // Write enable
       .rd_en         (ftsf_rd_en_w),        // Read the next word 
       //.dout          ({in_fifo_ctrl, in_fifo_data}),
       .dout          ({in_fifo_ctrl_p, in_fifo_data_p}),
@@ -179,6 +184,7 @@ module ids
       .bmem_dout_in               (bmem_dout_w[PROC_DATA_INTERFACE_HIGHBIT:PROC_DATA_INTERFACE_LOWBIT]),
       .state_status_in            (state),
       .bmemreadptr_in             (bmemasfifo_readptr_r),
+      .mem_pc_carry_baggage_w     (mem_pc_carry_baggage_w),
       .clk                        (clk)
    );
    // REMOVE THIS
@@ -193,7 +199,7 @@ module ids
       .REG_ADDR_WIDTH      (`IDS_REG_ADDR_WIDTH),     // Width of block addresses -- eg. MODULE_REG_ADDR_WIDTH
       .NUM_COUNTERS        (0),                 // Number of counters
       .NUM_SOFTWARE_REGS   (2),                 // Number of sw regs
-      .NUM_HARDWARE_REGS   (3)                  // Number of hw regs
+      .NUM_HARDWARE_REGS   (6)                  // Number of hw regs
    ) module_regs (
       .reg_req_in       (reg_req_in),
       .reg_ack_in       (reg_ack_in),
@@ -217,19 +223,32 @@ module ids
       .software_regs    ({sw_cmd_w, sw_readaddr_w}),
 
       // --- HW regs interface
-      .hardware_regs    ({hw_data_ctrl, hw_data_high, hw_data_low}),
+      //.hardware_regs    ({hw_data_ctrl, hw_data_high, hw_data_low}),
+      .hardware_regs    ({hw_data5, hw_data4, hw_data3, hw_data2, hw_data1, hw_data0}),
 
       .clk              (clk),
       .reset            (reset)
     );
 
-   logic_thief lt0(
-      .probe_data_i     (bmem_din_w),
-      .probe_addr_i    (bmem_write_addr_w),
+   logic_thief 
+   # (.INSTMEM_LOG2_DEEP      (INSTMEM_LOG2_DEEP), 
+      .CTRL_WIDTH             (CTRL_WIDTH),
+      .DATA_WIDTH             (DATA_WIDTH),
+      .LOGTHIEF_DATA_WIDTH    (LOGTHIEF_DATA_WIDTH),
+      .BMEM_LOG2_DEEP         (BMEM_LOG2_DEEP),
+      .LOGTHIEF_LOG2_DEEP     (LOGTHIEF_LOG2_DEEP)
+   ) lt0(
+      .probe_wdata_i    (bmem_din_w),
+      .probe_w_addr_i   (bmem_write_addr_w),
       .probe_wea_i      (bmem_wr_en_w),
+      .probe_rdata_i    (bmem_dout_w),
+      .probe_r_addr_i   (bmem_read_addr_w),
+      .state_i          (state),
+      .probe_mem_pc_i   (mem_pc_carry_baggage_w),
       .cmd_i            (sw_cmd_w),
       .addr_i           (sw_readaddr_w),
-      .data_o           (dataout_96bit_w),
+      //.data_o           (dataout_96bit_w),
+      .data_o           (logicthief_dataout_w),
       .clk_i            (clk)
    );
 
@@ -252,6 +271,7 @@ module ids
    assign in_rdy     = !ftsf_nearly_full & (!(state_next == CPU_PROCESS | state_next == READ_READY));
    assign out_wr_w   = out_rdy & (bmemasfifo_readptr_r != bmemasfifo_writeptr_r) & (state == READ_READY);
    assign out_wr     = out_wr_r;
+   assign augment_proc_writedata_w = {CTRL_WIDTH{1'b0}};
    // muxes for allowing network and CPU to use same datamem
    // NOTE: cpu_active_r goes LOW in the same clock cycle as state becomes
    // READ_READY, bmemasfifo_readptr_r is incremented only when out_wr_w is
@@ -265,106 +285,105 @@ module ids
    assign bmem_wr_en_w = cpu_active_r == 1'b1 ? mem_mem_write_en_w & ~mem_alu_out_w[CPU_JOB_STATUS_ADDR_BIT] :  in_fifo_wr_messenger_next;
    assign bmem_write_addr_w = cpu_active_r == 1'b1 ? mem_alu_out_w[BMEM_LOG2_DEEP-1:0] : bmemasfifo_writeptr_r;
    assign bmem_read_addr_w = cpu_active_r == 1'b1 ? mem_alu_out_w[BMEM_LOG2_DEEP-1:0] : bmemasfifo_readptr_r;
-   //assign bmem_din_w = cpu_active_r == 1'b1 ? mem_r2_out_w : ({in_fifo_ctrl_p, in_fifo_data_p});
+   assign bmem_din_w = cpu_active_r == 1'b1 ? ({augment_proc_writedata_w, mem_r2_out_w}) : ({in_fifo_ctrl_p, in_fifo_data_p});
    // HACK 0: 
-   assign bmem_din_w = cpu_active_r == 1'b1 ? ({sync_data_r[CTRL_WIDTH+DATA_WIDTH-1:PROC_DATA_INTERFACE_HIGHBIT+1], mem_r2_out_w, sync_data_r[PROC_DATA_INTERFACE_LOWBIT-1:0]}) : ({in_fifo_ctrl_p, in_fifo_data_p});
+   //assign bmem_din_w = cpu_active_r == 1'b1 ? ({sync_data_r[CTRL_WIDTH+DATA_WIDTH-1:PROC_DATA_INTERFACE_HIGHBIT+1], mem_r2_out_w, sync_data_r[PROC_DATA_INTERFACE_LOWBIT-1:0]}) : ({in_fifo_ctrl_p, in_fifo_data_p});
    assign {out_ctrl, out_data} = bmem_dout_w;
    assign cpu_job_complete_w = mem_mem_write_en_w & mem_alu_out_w[CPU_JOB_STATUS_ADDR_BIT];
 
    always @(*) begin
-      {hw_data_ctrl, hw_data_high, hw_data_low} = dataout_96bit_w;
+     // {hw_data_ctrl, hw_data_high, hw_data_low} = dataout_96bit_w;
+      {hw_data5, hw_data4, hw_data3, hw_data2, hw_data1, hw_data0} = logicthief_dataout_w;
    end
   
    // state machine 
    always @(*) begin
-      state_next = state;
+      //state_next = state;
       ftsf_rd_en_w = 0;
       in_fifo_wr_messenger_next = 0;
-      cooloff_counter_next_w = cooloff_counter_r;
-      waitforcpujobcomplete_counter_next = waitforcpujobcomplete_counter_r;
+      //cooloff_counter_next_w = cooloff_counter_r;
+      //waitforcpujobcomplete_counter_next = waitforcpujobcomplete_counter_r;
       cpu_active_next = cpu_active_r;
       
-      if (!ftsf_empty_w && out_rdy) begin
-         in_fifo_wr_messenger_next = 1;
-         ftsf_rd_en_w = 1;
+      //if (!ftsf_empty_w && out_rdy) begin
+         //in_fifo_wr_messenger_next = 1;
+         //ftsf_rd_en_w = 1;
          
          case(state)
             START: begin
-               if (in_fifo_ctrl_p != 0) begin
+               if (!ftsf_empty_w && out_rdy) begin
+                  ftsf_rd_en_w = 1;
+                  if (in_fifo_ctrl_p != 0) begin
+                     in_fifo_wr_messenger_next = 1;
+                     state_next = PAYLOAD;
+                  end else begin
+                     state_next = START;
+                  end
+               end else begin
+                     state_next = START;
+               end
+            end   // end of START State
+            PAYLOAD: begin
+               if (!ftsf_empty_w && out_rdy) begin
+                  ftsf_rd_en_w = 1;
+                  in_fifo_wr_messenger_next = 1;
+                  if (in_fifo_ctrl_p != 0) begin
+                     state_next = CPU_PROCESS;
+                  end
+                  else begin
+                     state_next = PAYLOAD;
+                  end
+               end else begin
                   state_next = PAYLOAD;
                end
-            end
-            PAYLOAD: begin
-               if (in_fifo_ctrl_p != 0) begin
-                  state_next = CPU_PROCESS;
-               end
-               else begin
-               end
-            end
-         endcase // case(state)
-      end
-      if (state == CPU_PROCESS) begin
-         // first empty out all the contents of ftsf to data memory
-         if (!ftsf_empty_w)  begin
-            in_fifo_wr_messenger_next = 1;
-            ftsf_rd_en_w = 1;
-         end   // end of ftsf_empty
-         else begin
-            if (cpu_active_r) begin
+            end   // end of PAYLOAD state
+            CPU_PROCESS: begin
+               ftsf_rd_en_w = 0;
                cpu_active_next = 1'b1;
-               //cooloff_counter_next_w = cooloff_counter_r + 1;
                if (cpu_job_complete_w) begin
                   cpu_active_next = 1'b0;
                   state_next = READ_READY;
+               end else begin
+                  state_next = CPU_PROCESS;
+               end
+            end   // end of CPU_PROCESS state
+            READ_READY: begin
+               if (bmemasfifo_readptr_r == bmemasfifo_writeptr_r) begin
+                  state_next = START;
+               end   
+               else begin
+                  state_next = READ_READY;
                end
             end
-            else begin
-               // cool-off of 2 clock cycles is required to ensure that data
-               // being written to data memory from incoming packet is stored
-               // in the data memory and then the MUX starts routing the cpu
-               // read and write operations data
-               cpu_active_next = 1'b1;
-               //end
-            end
-         end   // now perform some operation
-      end // end of CPU_PROCESS_STATE
-      if (state == READ_READY) begin
-         cooloff_counter_next_w = 0;
-         waitforcpujobcomplete_counter_next = 0;
-         if (bmemasfifo_readptr_r == bmemasfifo_writeptr_r) begin
-            state_next = START;
-         end   
-      end // end of READ_READY state
+         endcase // case(state)
    end // always @ (*)
    
    always @(posedge clk) begin
       if(reset) begin
          //matches <= 0;
          state <= START;
-	 in_fifo_ctrl                     <= 0;
-	 in_fifo_data                     <= 0;
-         cooloff_counter_r                <= 0;
+	 //in_fifo_ctrl                     <= 0;
+         //cooloff_counter_r                <= 0;
          cpu_active_r                     <= 1'b0;
-         waitforcpujobcomplete_counter_r  <= 0;
+         //waitforcpujobcomplete_counter_r  <= 0;
          // HACK 0: 
          // THESE LINE TO BE REMOVED WHEN WE DO MULTI-THREADED
-         sync_data_r                      <= 'b0;
-         mem_alu_out_r                    <= 'b0;
+         //sync_data_r                      <= 'b0;
+         //mem_alu_out_r                    <= 'b0;
       end
       else begin
          state <= state_next;
-	 in_fifo_ctrl <= in_fifo_ctrl_p;
-	 in_fifo_data <= in_fifo_data_p;
-	 in_fifo_wr_messenger_r <= in_fifo_wr_messenger_next;
-         cooloff_counter_r <= cooloff_counter_next_w;   
+	 //in_fifo_ctrl <= in_fifo_ctrl_p;
+	 //in_fifo_wr_messenger_r <= in_fifo_wr_messenger_next;
+         //cooloff_counter_r <= cooloff_counter_next_w;   
          cpu_active_r      <= cpu_active_next;
-         waitforcpujobcomplete_counter_r <= waitforcpujobcomplete_counter_next;
+         //waitforcpujobcomplete_counter_r <= waitforcpujobcomplete_counter_next;
          // HACK 0: 
          // THESE LINE TO BE REMOVED WHEN WE DO MULTI-THREADED
-         mem_alu_out_r        <= mem_alu_out_w;
-         if (mem_alu_out_r == (bmemasfifo_readptr_r + 5)) begin
-            sync_data_r       <= bmem_dout_w;
-         end
+         //mem_alu_out_r        <= mem_alu_out_w;
+         //if (mem_alu_out_r == (bmemasfifo_readptr_r + 5)) begin
+           // sync_data_r       <= bmem_dout_w;
+         //end
       end // else: !if(reset)
    end // always @ (posedge clk)   
    

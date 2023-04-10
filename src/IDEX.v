@@ -1,5 +1,8 @@
 module IDEX 
-   #(parameter PROC_DATA_WIDTH=16, PROC_REGFILE_LOG2_DEEP=5)
+   #(parameter PROC_DATA_WIDTH=16, 
+     parameter PROC_REGFILE_LOG2_DEEP=5,
+     parameter INSTMEM_LOG2_DEEP=8
+   )
    ( 
        input                                 WRegEn_in, 
        input                                 WMemEn_in, 
@@ -20,6 +23,7 @@ module IDEX
        //input                   jal_in,
        //input                   hz_jalr_in,
        input [1:0]                           thread_id_in,    
+       input [INSTMEM_LOG2_DEEP-1:0]         pc_carry_baggage_i,
       
        output reg                            WRegEn_out, 
        output reg                            WMemEn_out, 
@@ -35,7 +39,8 @@ module IDEX
        output reg [PROC_REGFILE_LOG2_DEEP-1:0]     WReg1_out,
        output reg [2:0]                      func3_out,
        output reg  			     func7_out,		
-       output reg [1:0]                      thread_id_out    
+       output reg [1:0]                      thread_id_out,  
+       output reg [INSTMEM_LOG2_DEEP-1:0]    pc_carry_baggage_o
        //output reg            jal_out,
        //output reg            hz_jalr_out
    );
@@ -58,6 +63,7 @@ module IDEX
            func3_out        <= 3'd0;
            func7_out        <= 1'b0;
            thread_id_out    <= 2'b00;
+           pc_carry_baggage_o <= 'b0;
            //hz_jalr_out<=1'b0;
            //jal_out<=1'b0;
        end
@@ -77,6 +83,7 @@ module IDEX
            func3_out        <= func3_in;
            func7_out        <= func7_in;
            thread_id_out    <= thread_id_in;
+           pc_carry_baggage_o <= pc_carry_baggage_i;
            //hz_jalr_out<=hz_jalr_in;
            //jal_out<=jal_in;
        end

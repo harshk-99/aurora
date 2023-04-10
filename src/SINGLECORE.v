@@ -19,9 +19,9 @@ module SINGLECORE
    #(
       parameter DATA_WIDTH                   = 64,
       parameter CTRL_WIDTH                   = DATA_WIDTH/8,
-      parameter PROC_DATA_WIDTH              = 16,
+      parameter PROC_DATA_WIDTH              = 64,
       parameter PROC_REGFILE_LOG2_DEEP       = 5,
-      parameter NUM_REGISTERS                = 32,
+      parameter NUM_REGISTERS                = 2**PROC_REGFILE_LOG2_DEEP,
       parameter BMEM_LOG2_DEEP               = 8,
       parameter INSTMEM_LOG2_DEEP            = 8,
       parameter BMEM_DATA_WIDTH              = CTRL_WIDTH + DATA_WIDTH,
@@ -41,7 +41,8 @@ module SINGLECORE
       output [PROC_DATA_WIDTH-1:0]        mem_r2_out_out,
       // mem_alu_out_w only BMEM_LOG2_DEEP is used in the the ids module as
       // this signal is used for address input (read and write address)
-      output [PROC_DATA_WIDTH-1:0]        mem_alu_out_out
+      output [PROC_DATA_WIDTH-1:0]        mem_alu_out_out,
+      output [INSTMEM_LOG2_DEEP-1:0]      mem_pc_carry_baggage_w
    );
 
    // THREADx_DONE means that state machine would check this specific address
@@ -117,6 +118,7 @@ module SINGLECORE
    wire [PROC_DATA_WIDTH-1:0]            sign_extender_selecter_w;
 
    // EX stage wires and regs
+   wire [INSTMEM_LOG2_DEEP-1:0]          ex_pc_carry_baggage_w;
    wire [PROC_DATA_WIDTH-1:0]            alu_out_w;
    wire [PROC_DATA_WIDTH-1:0]            data2_w;
    wire                                  ex_alu_src_w;
@@ -262,7 +264,9 @@ module SINGLECORE
 	
     assign alu_src_w = ~(load_w | store_w | immd_w);
 
-    IDEX #(.PROC_DATA_WIDTH(PROC_DATA_WIDTH), .PROC_REGFILE_LOG2_DEEP(PROC_REGFILE_LOG2_DEEP))
+    IDEX #(.PROC_DATA_WIDTH         (PROC_DATA_WIDTH), 
+           .PROC_REGFILE_LOG2_DEEP  (PROC_REGFILE_LOG2_DEEP),
+           .INSTMEM_LOG2_DEEP       (INSTMEM_LOG2_DEEP))
       idex0 (
         .WRegEn_in          (reg_write_w), 
         .WMemEn_in          (mem_write_w), 
@@ -278,6 +282,7 @@ module SINGLECORE
         .sign_ext_in        (sign_ext_w),
         .func3_in           (func3_intm_w), 
         .func7_in           (func7_intm_w), 
+        .pc_carry_baggage_i (id_pc_carry_baggage_w),  
         .CLK                (clk),           
         .RST                (reset),
         .thread_id_in       (id_thread_id_w),
@@ -297,7 +302,8 @@ module SINGLECORE
         .WReg1_out          (ex_reg_write_addr_w),
         .func3_out          (ex_func3_w),
         .func7_out          (ex_func7_w),
-        .thread_id_out       (ex_thread_id_w)
+        .thread_id_out       (ex_thread_id_w),
+        .pc_carry_baggage_o (ex_pc_carry_baggage_w)  
         //.jal_out            (ex_jal_w),
         //.hz_jalr_out        (ex_hz_jalr_w)
     );
@@ -306,7 +312,7 @@ module SINGLECORE
     //assign data2_w = (ex_load_w == 1'b0 && ex_store_w == 1'b0 && ex_immd_w == 1'b0) ? ex_r2_out_w : ex_sign_ext_w;
     //assign ex_data2_j= (ex_jal_w || ex_hz_jalr_w) ? 64'h0000000000000000 : data2_w;
 
-    alu_16_bit #(.PROC_DATA_WIDTH(PROC_DATA_WIDTH)) 
+    ALU #(.PROC_DATA_WIDTH(PROC_DATA_WIDTH)) 
       alu0 
          (
          .in_rs1     (ex_r1_out_w),
@@ -316,7 +322,9 @@ module SINGLECORE
          .out_rd     (alu_out_w)
          );
 
-    EXMEM #(.PROC_DATA_WIDTH(PROC_DATA_WIDTH), .PROC_REGFILE_LOG2_DEEP(PROC_REGFILE_LOG2_DEEP))
+    EXMEM #(.PROC_DATA_WIDTH        (PROC_DATA_WIDTH), 
+            .PROC_REGFILE_LOG2_DEEP (PROC_REGFILE_LOG2_DEEP),
+            .INSTMEM_LOG2_DEEP      (INSTMEM_LOG2_DEEP))
       exmem0 (
         .clk_i              (clk),           
         .rst_i              (reset),           
@@ -328,6 +336,7 @@ module SINGLECORE
         .reg_data2_i        (ex_r2_out_w),     
         .reg_write_addr_i   (ex_reg_write_addr_w),
         .thread_id_i        (ex_thread_id_w),
+        .pc_carry_baggage_i (ex_pc_carry_baggage_w),  
         .reg_write_en_o     (mem_reg_write_w),  
         .mem_write_en_o     (mem_mem_write_en_out),  
         //.mem_read_en_o      (mem_mem_read_w),   
@@ -335,7 +344,9 @@ module SINGLECORE
         .alu_o              (mem_alu_out_out),           
         .reg_data2_o        (mem_r2_out_out),     
         .reg_write_addr_o   (mem_reg_write_addr_w), 
-        .thread_id_o        (mem_thread_id_w)
+        .thread_id_o        (mem_thread_id_w),
+        .pc_carry_baggage_o (mem_pc_carry_baggage_w)  
+
     );
 
     //data_memory dm0 (.clka(clk), mem_alu_out_w[7:0], mem_r2_out_w, mem_mem_write_w, mem_read_data_w);

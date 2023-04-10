@@ -319,10 +319,10 @@ with open(elaborate_file_path, 'w', newline='') as file:
         hex_string = "0x{:0>8}".format(hex_string[2:])
         if index in block_names.values():
             label = list(block_names.keys())[list(block_names.values()).index(index)]
-            file.write("{0: <3} {1: <30} {2: <20} {3: <12} {4: <34}\n".format(index, label, elem2, hex_string, elem3))
+            file.write("{0: <3} {1: <30} {2: <20} {3: <12} {4: <34}\n".format(hex(index)[2:], label, elem2, hex_string, elem3))
         else:
             label = ""
-            file.write("{0: <3} {1: <30} {2: <20} {3: <12} {4: <34}\n".format(index, label, elem2, hex_string, elem3))
+            file.write("{0: <3} {1: <30} {2: <20} {3: <12} {4: <34}\n".format(hex(index)[2:], label, elem2, hex_string, elem3))
 
 
 print_all()
