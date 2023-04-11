@@ -23,6 +23,7 @@ module BR_ALU
         input [PROC_DATA_WIDTH-1:0]    in_rs1,
         input [PROC_DATA_WIDTH-1:0]    in_rs2, 
         input [2:0]                    in_funct3,
+        input                          in_funct7,
 	output reg                     out_branch
     );
 		 

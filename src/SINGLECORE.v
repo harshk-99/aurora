@@ -118,6 +118,7 @@ module SINGLECORE
    wire                                  branch_alu_w;
    //reg  [INSTMEM_LOG2_DEEP-1:0]          pc_prev_r;
    wire [PROC_DATA_WIDTH-1:0]            sign_extender_selecter_w;
+   wire                                  id_immd_not_shift_type_instr;
 
    // EX stage wires and regs
    wire [INSTMEM_LOG2_DEEP-1:0]          ex_pc_carry_baggage_w;
@@ -262,7 +263,9 @@ module SINGLECORE
     //assign sign_ext_w = (immd_w == 1'b1) ? {{4{instr_w[31]}}, instr_w[31:20]} : {{4{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
     assign sign_ext_w = (immd_w == 1'b1) ? {{SIGNEXT_BITS{instr_w[31]}}, instr_w[31:20]} : {{SIGNEXT_BITS{instr_w[31]}}, instr_w[31:25], instr_w[11:7]};
     assign func3_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[14:12] : 3'b000;
-    assign func7_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[30] : 1'b0		;
+    //assign func7_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? instr_w[30] : 1'b0		;
+    assign id_immd_not_shift_type_instr = immd_w == 1'b1 & ((func3_intm_w != 3'b001) & (func3_intm_w != 3'b101));
+    assign func7_intm_w = (load_w == 1'b0 && store_w == 1'b0) ? ((id_immd_not_shift_type_instr == 1'b1)? 1'b0: instr_w[30]) : 1'b0		;
     // control instructions mux logic for ID stage
 	
     assign alu_src_w = ~(load_w | store_w | immd_w);
