@@ -42,8 +42,10 @@ func3_dict = {
 }
 
 func7_dict = {
-    "0000000": ["slli", "srli", "add", "sll", "slt", "sltu", "xor", "srl", "or", "and"],
-    "0100000": ["srai", "sub", "sra"]
+    "0000000": ["add", "sll", "slt", "sltu", "xor", "srl", "or", "and"],
+    "000000": ["slli", "srli"],
+    "010000": ["srai"],
+    "0100000": ["sub", "sra"]
 }
 
 abi_dict = {
@@ -117,7 +119,7 @@ def parseIType(parts):
             [(i, abi_list.index(parts[2])) for i, abi_list in enumerate(list(abi_dict.values())) if parts[2] in abi_list][0][0]]
         if (parts[0] == "slli" or parts[0] == "srli" or parts[0] == "srai"):
             immd12 = list(func7_dict.keys())[
-                [(i, func7_list.index(parts[0])) for i, func7_list in enumerate(list(func7_dict.values())) if parts[0] in func7_list][0][0]] + getBinary(int(parts[3]), 5)
+                [(i, func7_list.index(parts[0])) for i, func7_list in enumerate(list(func7_dict.values())) if parts[0] in func7_list][0][0]] + getBinary(int(parts[3]), 6)
         else:
             immd12 = getBinary(int(parts[3]), 12)
     elif (opcode == "0000011"):
