@@ -17,8 +17,8 @@ module MEMWB
     if (rst_i == 1'b1) begin
       reg_write_en_o    <= 1'b0; 
       mem_to_reg_o      <= 1'b0; 
-      reg_write_addr_o  <= 5'd0;
-      alu_o             <= 64'd0;
+      reg_write_addr_o  <= {PROC_REGFILE_LOG2_DEEP{1'b0}};
+      alu_o             <= {PROC_DATA_WIDTH{1'b0}};
     end else begin
       reg_write_en_o    <= reg_write_en_i;
       mem_to_reg_o      <= mem_to_reg_i;

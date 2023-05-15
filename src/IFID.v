@@ -19,7 +19,7 @@ module IFID
 always @(posedge CLK ) begin
     if(RST==1'b1)
     begin
-        PC_out          <= 8'b00000000;
+        PC_out          <= 8'h00;
         wb_ff_out       <= 1'b0;  
         thread_id_out   <= 2'b00;
         //incre_pc_out    <=8'b00000000;

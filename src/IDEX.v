@@ -51,19 +51,19 @@ module IDEX
            WRegEn_out       <= 1'b0;
            WMemEn_out       <= 1'b0;
            //RMemEn_out       <= 1'b0;
-           alu_src_out 	 <= 1'b0;
-                     mem_to_reg_out   <= 1'b0;
+           alu_src_out 	    <= 1'b0;
+           mem_to_reg_out   <= 1'b0;
            //imm_out          <= 1'b0;
            //load_out         <= 1'b0;
            //store_out        <= 1'b0;
-           R1out_out        <= 16'd0;
-           R2out_out        <= 16'd0;
-           sign_ext_out     <= 16'd0;
-           WReg1_out        <= 5'd0;
+           R1out_out        <= {PROC_DATA_WIDTH{1'b0}};
+           R2out_out        <= {PROC_DATA_WIDTH{1'b0}};
+           sign_ext_out     <= {PROC_DATA_WIDTH{1'b0}};
+           WReg1_out        <= {PROC_REGFILE_LOG2_DEEP{1'b0}};
            func3_out        <= 3'd0;
            func7_out        <= 1'b0;
            thread_id_out    <= 2'b00;
-           pc_carry_baggage_o <= 'b0;
+           pc_carry_baggage_o <= 8'd0;
            //hz_jalr_out<=1'b0;
            //jal_out<=1'b0;
        end
