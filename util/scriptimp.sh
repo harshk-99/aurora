@@ -6,7 +6,7 @@ sudo touch $file_name
 sudo chmod 777 $file_name
 printf "%-7s\t%-5s\t%-2s\t%-6s\t%-6s\t%-8s\t%-8s\t%-4s\t%-6s\t%-6s\t%-8s\t%-8s\n" "counter""state""pc""rdaddr""rdatac""rdatah""rdatal""wren""wraddr""wdatac""wdatah""wdatal" >> $file_name
 #printf "%3x\t%x\t%2x\t%2x\t%2x\t%8x\t%8x\t%x\t%2x\t%2x\t%8x\t%8x\n" "$i"  "$state_hex" "$pc_hex" "$rdaddr_hex" "$rddata_ctrl_hex" "$rddata_hi_hex" "$rddata_lo_hex" "$wr_en_extracted" "$wraddr_hex" "$wrdata_ctrl_hex" "$wrdata_hi_hex" "$wrdata_lo_hex">> $file_name
-printf "counter\tstate\tpc\trdaddr\trdatac\trdatah\t\trdatal\t\twren\twraddr\twdatac\twdatah\t\twdatal\n">> $file_name
+printf "counter\ttid\tstate\tpc\trdaddr\trdatac\trdatah\t\trdatal\t\twren\twraddr\twdatac\twdatah\t\twdatal\n">> $file_name
 #echo -e "Address \t Control_Word \t Hi_Data \t Low_Data \n" >> $file_name
 readaddr_pointer=0x2000300
 #address_lo=0x2000308
@@ -18,6 +18,12 @@ address_2=0x2000310
 address_3=0x2000314
 address_4=0x2000318
 address_5=0x200031c
+address_6=0x2000320
+address_7=0x2000324
+address_8=0x2000328
+address_9=0x200032c
+address_10=0x2000330
+address_11=0x2000334
 
 for i in {0..255}
 do
@@ -145,7 +151,14 @@ do
     state_binary=$((shifted_value & bitmask))
     state_hex=$state_binary
 
-    printf "%3x\t%x\t%02x\t%02x\t%02x\t%08x\t%08x\t%2x\t%02x\t%02x\t%08x\t%08x\n" "$i"  "$state_hex" "$pc_hex" "$rdaddr_hex" "$rddata_ctrl_hex" "$rddata_hi_hex" "$rddata_lo_hex" "$wr_en_extracted" "$wraddr_hex" "$wrdata_ctrl_hex" "$wrdata_hi_hex" "$wrdata_lo_hex">> $file_name
+    #------ thread id bits extraction
+    shifted_amount=11
+    shifted_value=$((integer_value >> shifted_amount))
+    bitmask=$(((1<<2)-1)) 
+    tid_binary=$((shifted_value & bitmask))
+    tid_hex=$tid_binary
+
+    printf "%3x\t%x\t%x\t%02x\t%02x\t%02x\t%08x\t%08x\t%2x\t%02x\t%02x\t%08x\t%08x\n" "$i" "$tid_hex"  "$state_hex" "$pc_hex" "$rdaddr_hex" "$rddata_ctrl_hex" "$rddata_hi_hex" "$rddata_lo_hex" "$wr_en_extracted" "$wraddr_hex" "$wrdata_ctrl_hex" "$wrdata_hi_hex" "$wrdata_lo_hex">> $file_name
     #echo -e "$i \t $wraddr \t $wrdata_hi \t $word_0" >> $file_name
     sudo rm $temp_file_5
     sudo rm $temp_file_4

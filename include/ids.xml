@@ -47,5 +47,35 @@
 			<nf:description>Lower bytes of data</nf:description>
 			<nf:type>generic_hardware32</nf:type>
 		</nf:register>
+		<nf:register>
+			<nf:name>hw_data6</nf:name>
+			<nf:description>Lower bytes of data</nf:description>
+			<nf:type>generic_hardware32</nf:type>
+		</nf:register>
+		<nf:register>
+			<nf:name>hw_data7</nf:name>
+			<nf:description>Lower bytes of data</nf:description>
+			<nf:type>generic_hardware32</nf:type>
+		</nf:register>
+		<nf:register>
+			<nf:name>hw_data8</nf:name>
+			<nf:description>Lower bytes of data</nf:description>
+			<nf:type>generic_hardware32</nf:type>
+		</nf:register>
+		<nf:register>
+			<nf:name>hw_data9</nf:name>
+			<nf:description>Lower bytes of data</nf:description>
+			<nf:type>generic_hardware32</nf:type>
+		</nf:register>
+		<nf:register>
+			<nf:name>hw_data10</nf:name>
+			<nf:description>Lower bytes of data</nf:description>
+			<nf:type>generic_hardware32</nf:type>
+		</nf:register>
+		<nf:register>
+			<nf:name>hw_data11</nf:name>
+			<nf:description>Lower bytes of data</nf:description>
+			<nf:type>generic_hardware32</nf:type>
+		</nf:register>
 	</nf:registers>
 </nf:module>
